@@ -1,0 +1,57 @@
+[
+  {
+    "id": "abril-2026",
+    "tipo": "Asamblea General",
+    "fecha_display": "19 de Abril, 2026",
+    "fecha_iso": "2026-04-19",
+    "hora_inicio": "4:05 PM",
+    "hora_fin": "4:45 PM",
+    "total_asistentes": 13,
+    "resumen": "Verificación de quórum, informes de tesorería, proposición sobre reglamentación de fechas de pago y celebración de cumpleaños.",
+    "quorum": {
+      "filas": [
+        { "clasificacion": "Locales",               "presentes": 7, "con_excusa": "—", "sin_excusa": "—", "total": 7,  "notas": "" },
+        { "clasificacion": "Metropolitanos",         "presentes": 2, "con_excusa": 0,   "sin_excusa": 0,   "total": 2,  "notas": "Ramiro y Liz Aguilar" },
+        { "clasificacion": "No locales / Virtuales", "presentes": 5, "con_excusa": 0,   "sin_excusa": 0,   "total": 5,  "notas": "Yezid, Patricia, Kico, Mao Matilla y Lalita" }
+      ],
+      "total": { "presentes": 14, "con_excusa": 0, "sin_excusa": 0, "total": 13 }
+    },
+    "rifas": {
+      "entrada": "Manuel Felipe",
+      "salida": "Mao Mantilla"
+    },
+    "acta_anterior": [
+      "Camilo ofrece cuenta Bancolombia para consignaciones del fondo.",
+      "Respecto a socios inactivos, se acordó enviarles comunicado informando el descuento de mora sobre aportes."
+    ],
+    "correspondencia": null,
+    "tesoreria": [
+      { "concepto": "💰 Caja",                 "valor": "30.232.728" },
+      { "concepto": "📂 Cartera",              "valor": "112.393.711" },
+      { "concepto": "📈 Aportes y Utilidades", "valor": "139.515.990" },
+      { "concepto": "🏦 Reserva Patrimonial",  "valor": "3.110.512" }
+    ],
+    "proposiciones": [
+      {
+        "titulo": "Reglamentación de Fechas de Pago",
+        "presentada_por": "Rebeca Adarme",
+        "puntos": [
+          "El día <strong>22 de cada mes</strong> es el corte para recibir aportes y abonos a préstamos.",
+          "Los socios pueden pagar hasta el día 30, con los intereses causados desde el día 22 hasta la fecha de pago.",
+          "No se reciben abonos parciales sin pago previo de los intereses causados.",
+          "Para socios externos, la fecha de pago corresponde a la misma fecha en que se realizó el crédito.",
+          "Si se pagan solo intereses el día 22 y se hace abono a capital el día 30, se deben pagar los días de interés corridos (días 23 al 30)."
+        ],
+        "pendiente": "Redacción formal para incorporar al reglamento del fondo.",
+        "resultado": "Aprobada por unanimidad"
+      }
+    ],
+    "cumpleanos": [
+      { "nombre": "Mauricio Adarme", "dia": 9 },
+      { "nombre": "Rebeca Adarme",   "dia": 10 },
+      { "nombre": "Manuel Felipe",   "dia": 13 },
+      { "nombre": "Liz Aguilar",     "dia": 28 }
+    ],
+    "proxima_reunion": "24 de Mayo de 2026"
+  }
+]
