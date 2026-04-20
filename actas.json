@@ -34,7 +34,7 @@
     "proposiciones": [
       {
         "titulo": "Reglamentación de Fechas de Pago",
-        "presentada_por": "Rebeca Adarme",
+        "presentada_por": "Bequi",
         "puntos": [
           "El día <strong>22 de cada mes</strong> es el corte para recibir aportes y abonos a préstamos.",
           "Los socios pueden pagar hasta el día 30, con los intereses causados desde el día 22 hasta la fecha de pago.",
@@ -48,7 +48,7 @@
     ],
     "cumpleanos": [
       { "nombre": "Mauricio Adarme", "dia": 9 },
-      { "nombre": "Rebeca Adarme",   "dia": 10 },
+      { "nombre": "Bequi",   "dia": 10 },
       { "nombre": "Manuel Felipe",   "dia": 13 },
       { "nombre": "Liz Aguilar",     "dia": 28 }
     ],
