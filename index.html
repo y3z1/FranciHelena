@@ -1,638 +1,963 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fondo Familiar Francihelena</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
 :root {
-  --navy:#0B1F3A;--navy-mid:#153354;--navy-light:#1E4A7A;--blue:#2563EB;
-  --gold:#B8962E;--gold-light:#D4AF5A;--gold-pale:#F0DFA0;--cream:#F8F4ED;
-  --cream-dark:#EDE7DA;--white:#FFFFFF;--ink:#0F1C2E;--ink-mid:#2C3E55;
-  --ink-soft:#5A6A7E;--border:#D8CFC0;--border-light:#EDE7DA;
-  --sh-sm:0 2px 8px rgba(11,31,58,.08);--sh-md:0 6px 24px rgba(11,31,58,.12);
-  --sh-lg:0 16px 48px rgba(11,31,58,.18);--sh-xl:0 24px 64px rgba(11,31,58,.22);
+  --ink:      #0A0F1E;
+  --deep:     #0D1535;
+  --navy:     #152048;
+  --blue:     #1B3A8C;
+  --sapphire: #2952CC;
+  --sky:      #4A7EE8;
+  --ice:      #8AAFF0;
+  --mist:     #C5D8FF;
+  --white:    #FFFFFF;
+  --off:      #F0F4FC;
+  --grey:     #E4EAF6;
+  --slate:    #94A3BC;
+  --text:     #1A2440;
+  --subtle:   #607090;
+
+  --glow: 0 0 40px rgba(73,126,232,.25);
+  --sh1:  0 2px 12px rgba(10,15,30,.08);
+  --sh2:  0 8px 40px rgba(10,15,30,.14);
+  --sh3:  0 24px 80px rgba(10,15,30,.22);
+  --r:    12px;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Crimson Pro',Georgia,serif;background:var(--cream);color:var(--ink);min-height:100vh;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
-.ornament-divider{display:flex;align-items:center;gap:12px;margin:0 auto 32px;width:fit-content;color:var(--gold);opacity:.7}
-.ornament-divider::before,.ornament-divider::after{content:'';display:block;width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-header{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:1px solid rgba(184,150,46,.2)}
-.header-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:72px;gap:24px}
-.logo-area{display:flex;align-items:center;gap:18px;cursor:pointer;flex-shrink:0}
-.logo-wrap{width:48px;height:48px;border-radius:50%;background:rgba(184,150,46,.12);border:1px solid rgba(184,150,46,.3);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;transition:border-color .2s}
-.logo-area:hover .logo-wrap{border-color:rgba(184,150,46,.6)}
-.logo-wrap img{width:38px;height:38px;object-fit:contain}
-.logo-text{color:var(--white)}
-.logo-text h1{font-family:'Cinzel',serif;font-size:.95rem;font-weight:600;letter-spacing:.08em;line-height:1.1}
-.logo-text p{font-family:'Cormorant Garamond',serif;font-size:.78rem;font-style:italic;color:var(--gold-light);letter-spacing:.06em;margin-top:1px}
-nav{display:flex;align-items:center;gap:4px}
-.nav-btn{font-family:'Cinzel',serif;font-size:.72rem;font-weight:500;letter-spacing:.1em;color:rgba(255,255,255,.65);background:transparent;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;transition:all .2s;text-transform:uppercase;position:relative}
-.nav-btn::after{content:'';position:absolute;bottom:4px;left:16px;right:16px;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .2s}
-.nav-btn:hover{color:rgba(255,255,255,.9)}
-.nav-btn:hover::after,.nav-btn.active::after{transform:scaleX(1)}
-.nav-btn.active{color:var(--gold-light)}
-.hero{background:var(--navy);padding:80px 40px 100px;position:relative;overflow:hidden;text-align:center}
-.hero-bg{position:absolute;inset:0;pointer-events:none}
-.hero-bg::before{content:'';position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:900px;height:700px;background:radial-gradient(ellipse,rgba(37,99,235,.18) 0%,rgba(21,51,84,.08) 50%,transparent 70%)}
-.hero-bg::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(184,150,46,.5) 30%,rgba(212,175,90,.8) 50%,rgba(184,150,46,.5) 70%,transparent 100%)}
-.hero-circle{position:absolute;border-radius:50%;border:1px solid rgba(184,150,46,.08);pointer-events:none}
-.hero-circle-1{width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%)}
-.hero-circle-2{width:900px;height:900px;top:50%;left:50%;transform:translate(-50%,-50%)}
-.hero-circle-3{width:1200px;height:1200px;top:50%;left:50%;transform:translate(-50%,-50%)}
-.hero-inner{position:relative;z-index:1;max-width:720px;margin:0 auto}
-.hero-eyebrow{font-family:'Cinzel',serif;font-size:.68rem;font-weight:400;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-light);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:14px;opacity:0;animation:fadeUp .6s ease .1s forwards}
-.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:40px;height:1px;background:var(--gold-light);opacity:.5}
-.hero h2{font-family:'Cinzel',serif;font-size:3rem;font-weight:600;color:var(--white);line-height:1.15;letter-spacing:.04em;margin-bottom:20px;opacity:0;animation:fadeUp .6s ease .2s forwards}
-.hero-subtitle{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:48px;opacity:0;animation:fadeUp .6s ease .3s forwards}
-.hero-stats{display:flex;justify-content:center;gap:0;opacity:0;animation:fadeUp .6s ease .4s forwards}
-.stat-item{padding:20px 40px;border-right:1px solid rgba(184,150,46,.2);text-align:center}
-.stat-item:last-child{border-right:none}
-.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:600;color:var(--gold-light);line-height:1;display:block}
-.stat-label{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:6px;display:block}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.page{max-width:1160px;margin:0 auto;padding:64px 40px}
-.view{display:none}
-.view.active{display:block}
-.section-header{text-align:center;margin-bottom:52px}
-.section-label{font-family:'Cinzel',serif;font-size:.65rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
-.section-title{font-family:'Cinzel',serif;font-size:1.9rem;font-weight:600;color:var(--navy);letter-spacing:.04em;margin-bottom:14px}
-.section-sub{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--ink-soft);max-width:520px;margin:0 auto;line-height:1.6}
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
-.acta-card{background:var(--white);border:1px solid var(--border-light);border-radius:2px;padding:32px;cursor:pointer;transition:all .3s cubic-bezier(.25,.8,.25,1);box-shadow:var(--sh-sm);position:relative;overflow:hidden}
-.acta-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--navy),var(--blue));transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
-.acta-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(37,99,235,.03),transparent);opacity:0;transition:opacity .3s}
-.acta-card:hover{transform:translateY(-4px);box-shadow:var(--sh-lg);border-color:rgba(37,99,235,.15)}
-.acta-card:hover::before{transform:scaleX(1)}
-.acta-card:hover::after{opacity:1}
-.card-tipo{font-family:'Cinzel',serif;font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.card-tipo::before{content:'';display:block;width:20px;height:1px;background:var(--blue);opacity:.5}
-.card-fecha{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;color:var(--navy);margin-bottom:10px;line-height:1.2}
-.card-resumen{font-family:'Crimson Pro',serif;font-size:.9rem;color:var(--ink-soft);line-height:1.7;margin-bottom:20px}
-.card-footer{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border-light)}
-.card-meta{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.08em;color:var(--ink-soft);display:flex;align-items:center;gap:6px}
-.card-link{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:6px;transition:gap .2s}
-.acta-card:hover .card-link{gap:10px}
-.detalle-wrap{max-width:860px;margin:0 auto}
-.detalle-header{background:var(--navy);border-radius:2px 2px 0 0;padding:48px 60px 40px;position:relative;overflow:hidden;text-align:center}
-.detalle-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 100% at 50% 0%,rgba(37,99,235,.2),transparent 70%)}
-.detalle-header::after{content:'';position:absolute;bottom:0;left:40px;right:40px;height:1px;background:linear-gradient(90deg,transparent,rgba(184,150,46,.5),transparent)}
-.back-btn{position:absolute;top:20px;left:24px;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:8px 16px;border-radius:2px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;z-index:1}
-.back-btn:hover{color:var(--white);background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25)}
-.detalle-eyebrow{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);margin-bottom:14px;position:relative;z-index:1}
-.detalle-title{font-family:'Cinzel',serif;font-size:1.8rem;font-weight:600;color:var(--white);letter-spacing:.06em;margin-bottom:20px;position:relative;z-index:1}
-.detalle-meta{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;position:relative;z-index:1}
-.detalle-meta-item{font-family:'Crimson Pro',serif;font-size:.9rem;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:8px}
-.detalle-meta-item svg{width:14px;height:14px;opacity:.6;flex-shrink:0}
-.detalle-body{background:var(--white);border:1px solid var(--border);border-top:none;border-radius:0 0 2px 2px;padding:52px 60px}
-.acta-seccion{padding:32px 0;border-bottom:1px solid var(--border-light);display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:start}
-.acta-seccion:first-child{padding-top:0}
-.acta-seccion:last-child{border-bottom:none;padding-bottom:0}
-.seccion-label{padding-top:2px}
-.seccion-num{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px}
-.seccion-titulo{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--navy);line-height:1.3}
-.seccion-body{font-family:'Crimson Pro',serif;font-size:.95rem;line-height:1.75;color:var(--ink-mid)}
-.tabla-base{width:100%;border-collapse:collapse;font-family:'Crimson Pro',serif;font-size:.9rem}
-.tabla-base thead th{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:11px 16px;text-align:left;font-weight:500}
-.tabla-base tbody td{padding:10px 16px;border-bottom:1px solid var(--border-light)}
-.tq thead th{background:var(--navy);color:rgba(255,255,255,.8)}
-.tq tbody tr:nth-child(even) td{background:rgba(21,51,84,.03)}
-.tq tr.total-row td{background:rgba(21,51,84,.07);font-weight:600;color:var(--navy);border-bottom:none}
-.tt thead th{background:#0A4D2E;color:rgba(255,255,255,.8)}
-.tt tbody tr:nth-child(even) td{background:rgba(10,77,46,.04)}
-.tt .valor-col{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;color:#0A4D2E;letter-spacing:.02em}
-.tt thead th:last-child{text-align:right}
-.rifas-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.rifa-card{padding:20px 24px;border-radius:2px;position:relative;overflow:hidden}
-.rifa-card-entrada{background:linear-gradient(135deg,var(--navy-mid),var(--navy-light));border:1px solid rgba(184,150,46,.2)}
-.rifa-card-salida{background:linear-gradient(135deg,#0A4D2E,#0D6B3A);border:1px solid rgba(184,150,46,.2)}
-.rifa-etiqueta{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px}
-.rifa-ganador{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--white)}
-.proposicion-card{background:#FFFDF0;border:1px solid #E8D88A;border-left:3px solid var(--gold);border-radius:2px;padding:24px 28px}
-.prop-header{margin-bottom:14px}
-.prop-titulo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--navy);margin-bottom:4px}
-.prop-autor{font-family:'Crimson Pro',serif;font-size:.83rem;font-style:italic;color:var(--ink-soft)}
-.prop-puntos{list-style:none;padding:0;margin-bottom:16px}
-.prop-puntos li{display:flex;gap:12px;padding:7px 0;border-bottom:1px solid rgba(232,216,138,.4);font-size:.9rem;line-height:1.6}
-.prop-puntos li:last-child{border-bottom:none}
-.prop-puntos li::before{content:'—';color:var(--gold);flex-shrink:0;margin-top:1px}
-.prop-pendiente{background:rgba(184,150,46,.1);border-radius:2px;padding:10px 14px;font-size:.83rem;color:#7A5C10;margin-top:14px}
-.prop-pendiente strong{color:#5A4000}
-.aprobado-pill{display:inline-flex;align-items:center;gap:7px;margin-top:14px;background:#D1FAE5;color:#065F46;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:2px}
-.cumple-grid{display:flex;flex-wrap:wrap;gap:10px}
-.cumple-item{background:linear-gradient(135deg,#FEF3C7,#FDE68A);border:1px solid #F5D97A;border-radius:2px;padding:10px 18px;display:flex;flex-direction:column;gap:2px;min-width:140px}
-.cumple-nombre{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:#7C2D12}
-.cumple-dia{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.12em;color:#92400E;opacity:.8}
-.proxima-banner{background:linear-gradient(135deg,var(--navy),var(--navy-light));border:1px solid rgba(184,150,46,.25);border-radius:2px;padding:22px 28px;display:flex;align-items:center;gap:20px}
-.proxima-icon-wrap{width:48px;height:48px;background:rgba(184,150,46,.15);border:1px solid rgba(184,150,46,.3);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.proxima-icon-wrap svg{width:22px;height:22px;color:var(--gold-light)}
-.proxima-label{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-light);opacity:.8;margin-bottom:4px}
-.proxima-fecha{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;color:var(--white)}
-.corr-empty{font-style:italic;color:var(--ink-soft);font-size:.92rem}
-.nosotros-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.nosotros-card{background:var(--white);border:1px solid var(--border-light);border-radius:2px;padding:32px;box-shadow:var(--sh-sm);position:relative;overflow:hidden;transition:box-shadow .25s,transform .25s}
-.nosotros-card:hover{box-shadow:var(--sh-md);transform:translateY(-2px)}
-.nosotros-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,var(--gold),var(--blue))}
-.nc-icon{width:40px;height:40px;background:rgba(21,51,84,.07);border-radius:2px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-.nc-icon svg{width:20px;height:20px;color:var(--navy-light)}
-.nc-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--navy);margin-bottom:10px}
-.nc-text{font-family:'Crimson Pro',serif;font-size:.9rem;line-height:1.8;color:var(--ink-soft)}
-footer{background:var(--navy);border-top:1px solid rgba(184,150,46,.15);padding:40px;margin-top:80px}
-.footer-inner{max-width:1160px;margin:0 auto;text-align:center}
-.footer-logo{font-family:'Cinzel',serif;font-size:1rem;font-weight:600;color:var(--white);letter-spacing:.1em;margin-bottom:8px}
-.footer-tagline{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:var(--gold-light);opacity:.75;margin-bottom:16px}
-.footer-copy{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3)}
 
-/* ── TREASURY LOCK ────────────────────────────────────────────────────── */
-.tesoreria-locked{background:#FFFDF5;border:1px solid #E8C97A;border-left:3px solid var(–gold);border-radius:2px;padding:20px 24px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:background .2s,border-color .2s}
-.tesoreria-locked:hover{background:#FBF5E6;border-color:var(–gold)}
-.tl-icon{font-size:22px;flex-shrink:0}
-.tl-label{font-family:‘Cinzel’,serif;font-size:.82rem;font-weight:600;color:#8A6B1E;letter-spacing:.04em}
-.tl-hint{font-family:‘Crimson Pro’,serif;font-size:.78rem;color:#A07820;margin-top:3px;font-style:italic}
-.tl-arrow{margin-left:auto;font-size:16px;opacity:.6}
-.tesoreria-content{display:none;margin-top:0}
-.tesoreria-content.visible{display:block}
-.tesoreria-header-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding:10px 14px;background:#F0F9EE;border:1px solid #A8D5A2;border-radius:2px}
-.tl-open-label{font-family:‘Cinzel’,serif;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:#065F46;font-weight:600}
-.tl-lock-btn{font-family:‘Cinzel’,serif;font-size:.6rem;color:#6B7280;cursor:pointer;background:none;border:none;letter-spacing:.08em;text-transform:uppercase;text-decoration:underline;display:flex;align-items:center;gap:4px}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-/* ── PIN MODAL ─────────────────────────────────────────────────────────── */
-.pin-overlay{position:fixed;inset:0;background:rgba(10,20,40,.6);backdrop-filter:blur(6px);z-index:500;display:none;align-items:center;justify-content:center}
-.pin-overlay.open{display:flex}
-.pin-box{background:var(–white);border-radius:4px;padding:40px 36px;max-width:360px;width:90%;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.25);animation:fadeUp .22s cubic-bezier(.34,1.3,.64,1)}
-.pin-icon{font-size:42px;margin-bottom:14px}
-.pin-box h4{font-family:‘Cinzel’,serif;font-size:1.15rem;font-weight:600;color:var(–navy);margin-bottom:6px;letter-spacing:.04em}
-.pin-box p{font-family:‘Crimson Pro’,serif;font-size:1rem;color:var(–ink-soft);margin-bottom:22px;line-height:1.6}
-.pin-input{width:100%;padding:13px;text-align:center;font-size:20px;letter-spacing:.3em;border:1.5px solid var(–border);border-radius:2px;font-family:‘Cormorant Garamond’,serif;color:var(–navy);outline:none;transition:border .18s;margin-bottom:8px}
-.pin-input:focus{border-color:var(–gold)}
-.pin-error{font-family:‘Crimson Pro’,serif;font-size:.85rem;color:#DC2626;min-height:20px;margin-bottom:10px;font-style:italic}
-.pin-submit{width:100%;padding:13px;background:var(–navy);color:var(–white);border:none;border-radius:2px;font-family:‘Cinzel’,serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;margin-bottom:10px;transition:background .18s}
-.pin-submit:hover{background:var(–navy-light)}
-.pin-cancel{font-family:‘Cormorant Garamond’,serif;font-size:.95rem;font-style:italic;color:var(–ink-soft);cursor:pointer;background:none;border:none}
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--off);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
 
-@media(max-width:860px){
-.header-inner{padding:0 20px;height:64px}
-.nav-btn{padding:6px 10px;font-size:.65rem;letter-spacing:.06em}
-.hero{padding:56px 20px 72px}
-.hero h2{font-size:2rem}
-.hero-stats{flex-direction:column;gap:0}
-.stat-item{border-right:none;border-bottom:1px solid rgba(184,150,46,.2)}
-.stat-item:last-child{border-bottom:none}
-.page{padding:40px 20px}
-.detalle-header{padding:48px 24px 32px}
-.detalle-body{padding:32px 24px}
-.acta-seccion{grid-template-columns:1fr;gap:12px}
-.nosotros-grid{grid-template-columns:1fr}
-.rifas-row{grid-template-columns:1fr}
+/* ──────── NOISE TEXTURE UTILITY ──────── */
+.noise::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+/* ──────── HEADER ──────── */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 400;
+  padding: 0 40px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(13,21,53,.85);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  animation: slideDown .5s ease;
+}
+@keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.brand { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.seal {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--sapphire), var(--sky));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif; font-size: 13px; font-weight: 700;
+  color: var(--white); letter-spacing: .04em;
+  box-shadow: 0 4px 14px rgba(41,82,204,.5);
+  flex-shrink: 0;
+}
+.brand-txt strong {
+  font-family: 'Fraunces', serif; font-size: .92rem; font-weight: 700;
+  color: var(--white); letter-spacing: .01em; display: block; line-height: 1.1;
+}
+.brand-txt span {
+  font-size: .63rem; font-weight: 400; color: rgba(255,255,255,.38);
+  letter-spacing: .12em; text-transform: uppercase;
+}
+
+nav { display: flex; gap: 4px; }
+.nb {
+  font-size: .68rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.45); background: none; border: none;
+  padding: 7px 16px; border-radius: 8px; cursor: pointer; transition: all .2s;
+}
+.nb:hover { color: rgba(255,255,255,.85); background: rgba(255,255,255,.06); }
+.nb.on { color: var(--white); background: rgba(73,126,232,.25); }
+
+/* ──────── VIEWS ──────── */
+.view { display: none; }
+.view.on { display: block; }
+
+/* ──────── HERO ──────── */
+.hero {
+  min-height: 100vh;
+  background: var(--ink);
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: center;
+  padding-top: 64px;
+}
+
+/* Animated gradient mesh */
+.hero-mesh {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 20% 50%, rgba(27,58,140,.7) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 70% at 80% 20%, rgba(41,82,204,.5) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 60% 90%, rgba(74,126,232,.3) 0%, transparent 50%);
+  animation: meshPulse 8s ease-in-out infinite alternate;
+}
+@keyframes meshPulse {
+  0%   { opacity: .9; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.04); }
+}
+
+/* Grid lines overlay */
+.hero-grid {
+  position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+}
+
+.hero-inner {
+  position: relative; z-index: 2;
+  max-width: 1200px; margin: 0 auto;
+  padding: 80px 60px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 80px;
+  align-items: center;
+}
+
+/* Hero left */
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: .65rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--ice); margin-bottom: 28px;
+  opacity: 0; animation: fadeUp .6s .15s ease forwards;
+}
+.hero-badge::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--sky); box-shadow: 0 0 8px var(--sky);
+}
+
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(3rem, 5.5vw, 5rem);
+  font-weight: 900; color: var(--white);
+  line-height: 1.04; letter-spacing: -.02em;
+  margin-bottom: 28px;
+  opacity: 0; animation: fadeUp .7s .25s ease forwards;
+}
+.hero h1 em {
+  font-style: italic; font-weight: 300;
+  background: linear-gradient(135deg, var(--sky), var(--mist));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-desc {
+  font-size: 1.05rem; color: rgba(255,255,255,.5); line-height: 1.8;
+  margin-bottom: 44px; max-width: 500px; font-weight: 300;
+  opacity: 0; animation: fadeUp .7s .35s ease forwards;
+}
+
+.hero-stats {
+  display: flex; gap: 36px;
+  opacity: 0; animation: fadeUp .7s .45s ease forwards;
+}
+.hs { display: flex; flex-direction: column; gap: 3px; }
+.hs-n {
+  font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 900;
+  color: var(--white); line-height: 1;
+  background: linear-gradient(135deg, var(--white), var(--ice));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hs-l {
+  font-size: .6rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+}
+
+/* Hero right — glass card */
+.hero-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 20px;
+  padding: 32px;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 8px 60px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.1);
+  opacity: 0; animation: fadeUp .8s .5s ease forwards;
+  position: relative; overflow: hidden;
+}
+.hero-card::before {
+  content: '';
+  position: absolute; top: -60px; right: -60px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(73,126,232,.3), transparent 70%);
+  pointer-events: none;
+}
+.hc-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 22px; padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.hc-title {
+  font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--ice);
+}
+.hc-badge {
+  font-size: .58rem; font-weight: 600; padding: 3px 10px; border-radius: 20px;
+  background: rgba(73,126,232,.25); color: var(--ice);
+  letter-spacing: .08em; text-transform: uppercase;
+}
+
+.hc-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.05);
+  transition: background .15s;
+}
+.hc-row:last-of-type { border-bottom: none; }
+.hc-concept { font-size: .85rem; color: rgba(255,255,255,.45); font-weight: 300; display: flex; align-items: center; gap: 8px; }
+.hc-value { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: var(--white); letter-spacing: .01em; }
+
+.hc-lock-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 14px; margin-top: 16px;
+  background: rgba(73,126,232,.15);
+  border: 1px solid rgba(73,126,232,.3);
+  border-radius: 10px; cursor: pointer; transition: all .2s;
+  font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ice);
+}
+.hc-lock-btn:hover { background: rgba(73,126,232,.28); border-color: rgba(73,126,232,.55); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Scroll hint */
+.scroll-hint {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 2;
+  opacity: 0; animation: fadeUp .6s 1.2s ease forwards;
+}
+.scroll-hint span { font-size: .6rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.2); }
+.scroll-arrow { width: 1px; height: 36px; background: linear-gradient(to bottom, rgba(255,255,255,.2), transparent); position: relative; }
+.scroll-arrow::after {
+  content: '';
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 4px; height: 4px; border-radius: 50%;
+  background: rgba(255,255,255,.3);
+  animation: drop 1.6s ease infinite;
+}
+@keyframes drop {
+  0%   { top: 0; opacity: 1; }
+  100% { top: 30px; opacity: 0; }
+}
+
+/* ──────── SECTION WRAPPER ──────── */
+.wrap { max-width: 1200px; margin: 0 auto; padding: 80px 60px; }
+
+/* ──────── SECTION HEAD ──────── */
+.sh { margin-bottom: 48px; }
+.sh-eye {
+  font-size: .6rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--sapphire); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 10px;
+}
+.sh-eye::before { content: ''; width: 18px; height: 2px; background: var(--sapphire); border-radius: 1px; }
+.sh-title { font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 700; color: var(--text); line-height: 1.15; letter-spacing: -.01em; }
+.sh-sub { font-size: .9rem; color: var(--subtle); margin-top: 8px; font-weight: 300; line-height: 1.7; }
+
+/* ──────── ACTA CARDS ──────── */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; }
+
+.acard {
+  background: var(--white);
+  border: 1px solid var(--grey);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all .3s cubic-bezier(.2,.8,.2,1);
+  box-shadow: var(--sh1);
+  display: flex; flex-direction: column;
+}
+.acard:hover {
+  transform: translateY(-6px) scale(1.005);
+  box-shadow: var(--sh3), var(--glow);
+  border-color: rgba(73,126,232,.3);
+}
+
+.acard-banner {
+  height: 6px;
+  background: linear-gradient(90deg, var(--sapphire), var(--sky), var(--mist));
+  transition: height .3s ease;
+}
+.acard:hover .acard-banner { height: 8px; }
+
+.acard-top { padding: 28px 28px 20px; }
+.acard-meta-top {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 14px;
+}
+.acard-tipo {
+  font-size: .58rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--sapphire); padding: 4px 10px; border-radius: 20px;
+  background: rgba(41,82,204,.08);
+}
+.acard-quorum {
+  font-size: .58rem; font-weight: 600; color: var(--subtle);
+  margin-left: auto; display: flex; align-items: center; gap: 4px;
+}
+
+.acard-fecha { font-family: 'Fraunces', serif; font-size: 1.55rem; font-weight: 700; color: var(--text); margin-bottom: 12px; line-height: 1.1; }
+.acard-resumen { font-size: .86rem; color: var(--subtle); line-height: 1.75; font-weight: 300; }
+
+.acard-divider { height: 1px; background: var(--grey); margin: 0 28px; }
+
+.acard-foot {
+  padding: 16px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.acard-hora { font-size: .7rem; color: var(--slate); font-weight: 300; display: flex; align-items: center; gap: 5px; }
+.acard-cta {
+  font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--sapphire); display: flex; align-items: center; gap: 5px;
+  transition: gap .2s;
+}
+.acard:hover .acard-cta { gap: 9px; }
+
+/* ──────── DETALLE ──────── */
+.det { max-width: 940px; margin: 0 auto; }
+
+.det-head {
+  background: linear-gradient(135deg, var(--ink) 0%, var(--deep) 50%, var(--navy) 100%);
+  border-radius: 20px; padding: 56px 64px 48px;
+  position: relative; overflow: hidden; text-align: center;
+  margin-bottom: 0;
+  border-bottom-left-radius: 0; border-bottom-right-radius: 0;
+}
+.det-head::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 30% 50%, rgba(41,82,204,.35) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 80% 20%, rgba(73,126,232,.25) 0%, transparent 50%);
+}
+.det-head::after {
+  content: '';
+  position: absolute; bottom: 0; left: 10%; right: 10%;
+  height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+}
+.det-grid-lines {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.back-btn {
+  position: absolute; top: 24px; left: 28px; z-index: 1;
+  display: flex; align-items: center; gap: 7px;
+  font-size: .62rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.45); background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.1);
+  padding: 9px 16px; border-radius: 8px; cursor: pointer; transition: all .2s;
+}
+.back-btn:hover { color: var(--white); background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.22); }
+
+.det-eye { font-size: .58rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--ice); margin-bottom: 14px; position: relative; z-index: 1; }
+.det-title { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 700; color: var(--white); letter-spacing: -.01em; margin-bottom: 24px; position: relative; z-index: 1; }
+.det-chips { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; position: relative; z-index: 1; }
+.det-chip {
+  font-size: .78rem; color: rgba(255,255,255,.5); font-weight: 300;
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 14px; background: rgba(255,255,255,.06); border-radius: 20px;
+}
+.det-chip svg { width: 12px; height: 12px; opacity: .6; flex-shrink: 0; }
+
+.det-body {
+  background: var(--white);
+  border: 1px solid var(--grey); border-top: none;
+  border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;
+  padding: 56px 64px;
+  box-shadow: var(--sh2);
+}
+
+/* ──────── SECCIONES ──────── */
+.sec {
+  padding: 36px 0; border-bottom: 1px solid var(--grey);
+  display: grid; grid-template-columns: 200px 1fr; gap: 40px; align-items: start;
+}
+.sec:first-child { padding-top: 0; }
+.sec:last-child { border-bottom: none; padding-bottom: 0; }
+.sec-lbl { padding-top: 2px; }
+.sec-n { font-size: .56rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--sapphire); display: block; margin-bottom: 6px; }
+.sec-t { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: var(--text); line-height: 1.3; }
+.sec-c { font-size: .9rem; line-height: 1.8; color: var(--text); }
+
+/* Tablas */
+.tbl { width: 100%; border-collapse: separate; border-spacing: 0; font-size: .86rem; border-radius: 10px; overflow: hidden; box-shadow: var(--sh1); }
+.tbl thead th { font-size: .56rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 11px 16px; text-align: left; background: var(--navy); color: rgba(255,255,255,.7); }
+.tbl tbody td { padding: 10px 16px; border-bottom: 1px solid var(--grey); background: var(--white); }
+.tbl tbody tr:hover td { background: var(--off); }
+.tbl tbody tr.total td { background: var(--off); font-weight: 700; color: var(--text); border-bottom: none; }
+
+.tbl-t thead th { background: linear-gradient(90deg, var(--blue), var(--sapphire)); }
+.tbl-t tbody td:last-child { text-align: right; font-family: 'Fraunces', serif; font-weight: 700; color: var(--sapphire); font-variant-numeric: tabular-nums; }
+.tbl-t thead th:last-child { text-align: right; }
+
+/* Rifas */
+.rifas { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.rifa { padding: 20px 24px; border-radius: 12px; position: relative; overflow: hidden; }
+.rifa::before { content: ''; position: absolute; right: -30px; top: -30px; width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,.06); }
+.rifa-e { background: linear-gradient(135deg, var(--navy), var(--blue)); border: 1px solid rgba(73,126,232,.25); }
+.rifa-s { background: linear-gradient(135deg, var(--deep), var(--navy)); border: 1px solid rgba(73,126,232,.15); }
+.rifa-lbl { font-size: .56rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 8px; }
+.rifa-name { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; color: var(--white); }
+
+/* Prop card */
+.prop-card {
+  background: var(--off); border: 1px solid var(--grey);
+  border-left: 3px solid var(--sapphire);
+  border-radius: 10px; padding: 22px 26px; margin-bottom: 14px;
+}
+.prop-card:last-child { margin-bottom: 0; }
+.prop-tit { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+.prop-aut { font-size: .75rem; color: var(--subtle); margin-bottom: 14px; font-style: italic; }
+.prop-list { list-style: none; padding: 0; margin-bottom: 12px; }
+.prop-list li { display: flex; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--grey); font-size: .86rem; line-height: 1.65; }
+.prop-list li:last-child { border-bottom: none; }
+.prop-list li::before { content: '›'; color: var(--sapphire); font-size: 1rem; flex-shrink: 0; line-height: 1.5; }
+.prop-pend { background: rgba(41,82,204,.07); border-radius: 6px; padding: 8px 12px; font-size: .78rem; color: var(--blue); margin-top: 10px; }
+.prop-pend strong { color: var(--navy); }
+.prop-badge {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 12px;
+  background: rgba(34,197,94,.1); color: #166534;
+  font-size: .58rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 20px;
+}
+
+/* Cumpleaños */
+.cumple-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+.cumple-chip {
+  background: linear-gradient(135deg, #EEF4FF, #E0EAFF);
+  border: 1px solid rgba(73,126,232,.2); border-radius: 10px;
+  padding: 10px 18px; min-width: 130px;
+}
+.cumple-n { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: var(--navy); }
+.cumple-d { font-size: .56rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--sapphire); margin-top: 3px; opacity: .8; }
+
+/* Próxima */
+.proxima {
+  background: linear-gradient(135deg, var(--navy), var(--blue));
+  border: 1px solid rgba(73,126,232,.3); border-radius: 12px;
+  padding: 20px 24px; display: flex; align-items: center; gap: 18px;
+}
+.prox-icon { width: 44px; height: 44px; background: rgba(255,255,255,.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.prox-icon svg { width: 20px; height: 20px; color: var(--ice); }
+.prox-lbl { font-size: .58rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 4px; }
+.prox-fecha { font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 700; color: var(--white); }
+
+/* ──────── TESORERÍA LOCK ──────── */
+.t-lock {
+  background: var(--off); border: 1px solid var(--grey);
+  border-left: 3px solid var(--sapphire);
+  border-radius: 10px; padding: 16px 22px;
+  display: flex; align-items: center; gap: 14px;
+  cursor: pointer; transition: all .2s;
+}
+.t-lock:hover { background: #EEF4FF; border-color: rgba(73,126,232,.4); box-shadow: var(--glow); }
+.tl-ico { font-size: 20px; flex-shrink: 0; }
+.tl-t { font-size: .82rem; font-weight: 600; color: var(--text); }
+.tl-h { font-size: .72rem; color: var(--subtle); margin-top: 2px; font-style: italic; }
+.tl-arr { margin-left: auto; color: var(--sapphire); font-size: 16px; transition: transform .2s; }
+.t-lock:hover .tl-arr { transform: translateX(3px); }
+.t-open { display: none; }
+.t-open.vis { display: block; animation: fadeUp .3s ease; }
+.t-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px; background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.2);
+  border-radius: 8px; margin-bottom: 10px;
+}
+.t-bar-lbl { font-size: .58rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #166534; }
+.t-lock-btn { font-size: .6rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--subtle); cursor: pointer; background: none; border: none; text-decoration: underline; }
+
+/* ──────── PIN MODAL ──────── */
+.pin-ov {
+  position: fixed; inset: 0; z-index: 600;
+  background: rgba(8,12,28,.7); backdrop-filter: blur(12px);
+  display: none; align-items: center; justify-content: center;
+}
+.pin-ov.on { display: flex; }
+.pin-box {
+  background: var(--white); border-radius: 20px;
+  padding: 44px 40px; max-width: 380px; width: 92%; text-align: center;
+  box-shadow: 0 32px 80px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.05);
+  animation: fadeUp .25s cubic-bezier(.34,1.3,.64,1);
+}
+.pin-ico { font-size: 44px; margin-bottom: 16px; }
+.pin-box h4 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 8px; letter-spacing: -.01em; }
+.pin-box p { font-size: .86rem; color: var(--subtle); line-height: 1.7; margin-bottom: 24px; font-weight: 300; }
+.pin-in {
+  width: 100%; padding: 13px; text-align: center; font-size: 22px; letter-spacing: .4em;
+  border: 1.5px solid var(--grey); border-radius: 10px;
+  font-family: 'Fraunces', serif; color: var(--text); outline: none; transition: border .18s;
+  margin-bottom: 8px;
+}
+.pin-in:focus { border-color: var(--sapphire); box-shadow: 0 0 0 3px rgba(41,82,204,.12); }
+.pin-err { font-size: .8rem; color: #DC2626; min-height: 20px; margin-bottom: 10px; font-style: italic; }
+.pin-go {
+  width: 100%; padding: 13px;
+  background: linear-gradient(135deg, var(--blue), var(--sapphire));
+  color: var(--white); border: none; border-radius: 10px;
+  font-family: 'Outfit', sans-serif; font-size: .72rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  cursor: pointer; margin-bottom: 10px; transition: all .2s;
+  box-shadow: 0 4px 14px rgba(41,82,204,.4);
+}
+.pin-go:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(41,82,204,.55); }
+.pin-cancel { font-size: .86rem; color: var(--slate); cursor: pointer; background: none; border: none; font-style: italic; }
+
+/* ──────── NOSOTROS ──────── */
+.nos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.nos-card {
+  background: var(--white); border: 1px solid var(--grey); border-radius: 16px;
+  padding: 32px; box-shadow: var(--sh1); position: relative; overflow: hidden;
+  transition: all .25s;
+}
+.nos-card:hover { transform: translateY(-4px); box-shadow: var(--sh2), var(--glow); border-color: rgba(73,126,232,.25); }
+.nos-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--sapphire), var(--sky)); border-radius: 16px 16px 0 0; }
+.nos-ico { width: 44px; height: 44px; background: rgba(41,82,204,.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+.nos-ico svg { width: 20px; height: 20px; color: var(--sapphire); }
+.nos-t { font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.nos-p { font-size: .86rem; line-height: 1.85; color: var(--subtle); font-weight: 300; }
+
+/* ──────── SUB-HERO (internal pages) ──────── */
+.sub-hero {
+  background: linear-gradient(135deg, var(--ink), var(--deep));
+  padding: 120px 60px 72px; position: relative; overflow: hidden;
+}
+.sub-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 100% at 20% 50%, rgba(41,82,204,.35) 0%, transparent 60%);
+}
+.sub-hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.sub-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+.sub-badge { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--ice); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.sub-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--sky); box-shadow: 0 0 8px var(--sky); }
+.sub-h { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 900; color: var(--white); line-height: 1.1; letter-spacing: -.02em; margin-bottom: 12px; }
+.sub-h em { font-style: italic; font-weight: 300; color: var(--ice); }
+.sub-p { font-size: .96rem; color: rgba(255,255,255,.45); font-weight: 300; }
+
+/* ──────── FOOTER ──────── */
+footer {
+  background: var(--ink);
+  border-top: 1px solid rgba(255,255,255,.06);
+  padding: 48px 60px; text-align: center; margin-top: 0;
+}
+.ft-logo { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 700; color: var(--white); margin-bottom: 8px; letter-spacing: -.01em; }
+.ft-tag { font-size: .75rem; color: var(--ice); opacity: .5; font-style: italic; margin-bottom: 16px; }
+.ft-copy { font-size: .58rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.18); }
+
+/* ──────── RESPONSIVE ──────── */
+@media(max-width:960px){
+  header { padding: 0 20px; }
+  .hero-inner { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+  .hero-card { display: none; }
+  .wrap { padding: 56px 24px; }
+  .det-head, .det-body { padding: 40px 24px; }
+  .sec { grid-template-columns: 1fr; gap: 12px; }
+  .rifas { grid-template-columns: 1fr; }
+  .nos-grid { grid-template-columns: 1fr; }
+  .sub-hero { padding: 100px 24px 56px; }
+  footer { padding: 40px 24px; }
 }
 @media(max-width:480px){
-.hero h2{font-size:1.6rem}
-.logo-text h1{font-size:.82rem}
-.logo-text p{display:none}
+  .hero h1 { font-size: 2.6rem; }
+  .brand-txt span { display: none; }
 }
 </style>
-
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
-  <div class="header-inner">
-    <div class="logo-area" onclick="showView('inicio')">
-      <div class="logo-wrap">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 38 38'%3E%3Ccircle cx='19' cy='19' r='17' fill='%230B1F3A' stroke='%23B8962E' stroke-width='1.5'/%3E%3Ctext x='19' y='25' text-anchor='middle' fill='%23D4AF5A' font-family='serif' font-size='14' font-weight='bold'%3EFH%3C/text%3E%3C/svg%3E" alt="Fondo Francihelena">
-      </div>
-      <div class="logo-text">
-        <h1>Fondo Francihelena</h1>
-        <p>Familia · Confianza · Unidad</p>
-      </div>
+  <div class="brand" onclick="showV('inicio')">
+    <div class="seal">FH</div>
+    <div class="brand-txt">
+      <strong>Fondo Francihelena</strong>
+      <span>Familia · Confianza · Unidad</span>
     </div>
-    <nav>
-      <button class="nav-btn active" onclick="showView('inicio')">Inicio</button>
-      <button class="nav-btn" onclick="showView('actas')">Actas</button>
-      <button class="nav-btn" onclick="showView('nosotros')">El Fondo</button>
-    </nav>
   </div>
+  <nav>
+    <button class="nb on" onclick="showV('inicio')">Inicio</button>
+    <button class="nb" onclick="showV('actas')">Actas</button>
+    <button class="nb" onclick="showV('nosotros')">El Fondo</button>
+  </nav>
 </header>
 
-<!-- ═══ INICIO ═══ -->
-
-<div id="view-inicio" class="view active">
-  <section class="hero">
-    <div class="hero-bg">
-      <div class="hero-circle hero-circle-1"></div>
-      <div class="hero-circle hero-circle-2"></div>
-      <div class="hero-circle hero-circle-3"></div>
-    </div>
+<!-- ══════ INICIO ══════ -->
+<div id="v-inicio" class="view on">
+  <section class="hero noise">
+    <div class="hero-mesh"></div>
+    <div class="hero-grid"></div>
     <div class="hero-inner">
-      <div class="hero-eyebrow">Archivo Familiar</div>
-      <h2>Fondo Familiar<br>Francihelena</h2>
-      <p class="hero-subtitle">Registro y consulta de las actas de nuestras reuniones familiares.<br>Transparencia, unidad y memoria para las generaciones.</p>
-      <div class="hero-stats">
-        <div class="stat-item"><span class="stat-num" id="stat-actas">—</span><span class="stat-label">Actas</span></div>
-        <div class="stat-item"><span class="stat-num" id="stat-asistentes">—</span><span class="stat-label">Último quórum</span></div>
-        <div class="stat-item"><span class="stat-num">2026</span><span class="stat-label">Año en curso</span></div>
+      <div>
+        <div class="hero-badge">Archivo Familiar Digital</div>
+        <h1>Nuestras <em>reuniones,</em><br>nuestra historia</h1>
+        <p class="hero-desc">Registro y consulta de las actas de asamblea del Fondo Familiar Francihelena. Transparencia y memoria para las generaciones.</p>
+        <div class="hero-stats">
+          <div class="hs"><span class="hs-n" id="s-actas">—</span><span class="hs-l">Actas</span></div>
+          <div class="hs"><span class="hs-n" id="s-asis">—</span><span class="hs-l">Último quórum</span></div>
+          <div class="hs"><span class="hs-n">2026</span><span class="hs-l">Año en curso</span></div>
+        </div>
       </div>
+
+      <!-- Glass card hero -->
+      <div class="hero-card">
+        <div class="hc-head">
+          <span class="hc-title">Última tesorería</span>
+          <span class="hc-badge">Abril 2026</span>
+        </div>
+        <div id="hc-lock-wrap">
+          <div class="hc-lock-btn" onclick="reqTeso('hero')">
+            <span>🔒</span>
+            <span>Ver informe financiero</span>
+          </div>
+        </div>
+        <div id="hc-data" style="display:none">
+          <div class="hc-row"><span class="hc-concept">💰 Caja</span><span class="hc-value">$30.232.728</span></div>
+          <div class="hc-row"><span class="hc-concept">📂 Cartera</span><span class="hc-value">$112.393.711</span></div>
+          <div class="hc-row"><span class="hc-concept">📈 Aportes</span><span class="hc-value">$139.515.990</span></div>
+          <div class="hc-row"><span class="hc-concept">🏦 Reserva</span><span class="hc-value">$3.110.512</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>Explorar</span>
+      <div class="scroll-arrow"></div>
     </div>
   </section>
-  <div class="page">
-    <div class="section-header">
-      <div class="section-label">Última reunión</div>
-      <div class="section-title" id="inicio-titulo">Cargando…</div>
-      <div class="ornament-divider">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.5 4.5H14l-3.7 2.7 1.4 4.3L8 10l-3.7 2.5 1.4-4.3L2 5.5h4.5L8 1z"/></svg>
-      </div>
+
+  <div class="wrap">
+    <div class="sh">
+      <div class="sh-eye">Últimas reuniones</div>
+      <div class="sh-title" id="t-inicio">Cargando…</div>
     </div>
-    <div class="cards-grid" id="inicio-cards"></div>
+    <div class="grid" id="g-inicio"></div>
   </div>
 </div>
 
-<!-- ═══ ACTAS ═══ -->
-
-<div id="view-actas" class="view">
-  <section class="hero" style="padding:60px 40px 72px">
-    <div class="hero-bg"><div class="hero-circle hero-circle-1"></div><div class="hero-circle hero-circle-2"></div></div>
-    <div class="hero-inner">
-      <div class="hero-eyebrow">Archivo</div>
-      <h2 style="font-size:2.2rem">Actas de Reuniones</h2>
-      <p class="hero-subtitle" style="margin-bottom:0">Historial completo de nuestras asambleas familiares</p>
+<!-- ══════ ACTAS ══════ -->
+<div id="v-actas" class="view">
+  <div class="sub-hero">
+    <div class="sub-hero-grid"></div>
+    <div class="sub-inner">
+      <div class="sub-badge">Archivo histórico</div>
+      <div class="sub-h">Actas de <em>Reuniones</em></div>
+      <div class="sub-p">Historial completo de nuestras asambleas familiares</div>
     </div>
-  </section>
-  <div class="page" id="actas-list">
-    <div class="section-header">
-      <div class="section-label">Historial</div>
-      <div class="section-title">Todas las actas</div>
-      <p class="section-sub">Selecciona una acta para consultar el detalle completo</p>
-    </div>
-    <div class="cards-grid" id="todas-cards"></div>
   </div>
-  <div class="page" id="acta-detalle" style="display:none"></div>
+  <div class="wrap" id="l-actas">
+    <div class="sh">
+      <div class="sh-eye">Historial completo</div>
+      <div class="sh-title">Todas las actas</div>
+      <div class="sh-sub">Selecciona una acta para ver el detalle</div>
+    </div>
+    <div class="grid" id="g-todas"></div>
+  </div>
+  <div class="wrap" id="l-det" style="display:none"></div>
 </div>
 
-<!-- ═══ NOSOTROS ═══ -->
-
-<div id="view-nosotros" class="view">
-  <section class="hero" style="padding:60px 40px 72px">
-    <div class="hero-bg"><div class="hero-circle hero-circle-1"></div><div class="hero-circle hero-circle-2"></div></div>
-    <div class="hero-inner">
-      <div class="hero-eyebrow">Quiénes somos</div>
-      <h2 style="font-size:2.2rem">El Fondo</h2>
-      <p class="hero-subtitle" style="margin-bottom:0">Misión, valores y estructura de nuestra comunidad familiar</p>
+<!-- ══════ NOSOTROS ══════ -->
+<div id="v-nosotros" class="view">
+  <div class="sub-hero">
+    <div class="sub-hero-grid"></div>
+    <div class="sub-inner">
+      <div class="sub-badge">Quiénes somos</div>
+      <div class="sub-h">El <em>Fondo</em></div>
+      <div class="sub-p">Misión, valores y estructura de nuestra comunidad familiar</div>
     </div>
-  </section>
-  <div class="page">
-    <div class="section-header">
-      <div class="section-label">Identidad</div>
-      <div class="section-title">Fondo Familiar Francihelena</div>
-      <div class="ornament-divider">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.5 4.5H14l-3.7 2.7 1.4 4.3L8 10l-3.7 2.5 1.4-4.3L2 5.5h4.5L8 1z"/></svg>
-      </div>
-    </div>
-    <div class="nosotros-grid">
-      <div class="nosotros-card"><div class="nc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><div class="nc-title">Misión</div><p class="nc-text">Promover el ahorro familiar, facilitar el acceso a crédito entre los socios y fortalecer los lazos de unidad, a través de una gestión transparente y democrática de los recursos compartidos.</p></div>
-      <div class="nosotros-card"><div class="nc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div class="nc-title">Valores</div><p class="nc-text">Confianza mutua, transparencia en la gestión, solidaridad entre los miembros, responsabilidad financiera y respeto irrestricto a los acuerdos establecidos en asamblea.</p></div>
-      <div class="nosotros-card"><div class="nc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div class="nc-title">Estructura</div><p class="nc-text">Asamblea General como máxima autoridad, apoyada por la Tesorería y la Revisoría Fiscal, quienes velan por el correcto manejo y crecimiento de los recursos del fondo.</p></div>
-      <div class="nosotros-card"><div class="nc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="nc-title">Reuniones</div><p class="nc-text">Nos reunimos mensualmente en asamblea ordinaria para revisar el estado financiero, aprobar proposiciones y fortalecer la comunicación y el vínculo entre todos los socios del fondo.</p></div>
+  </div>
+  <div class="wrap">
+    <div class="nos-grid">
+      <div class="nos-card"><div class="nos-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><div class="nos-t">Misión</div><p class="nos-p">Promover el ahorro familiar, facilitar el acceso a crédito entre los socios y fortalecer los lazos de unidad, a través de una gestión transparente y democrática.</p></div>
+      <div class="nos-card"><div class="nos-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div class="nos-t">Valores</div><p class="nos-p">Confianza mutua, transparencia, solidaridad entre miembros, responsabilidad financiera y respeto irrestricto a los acuerdos de asamblea.</p></div>
+      <div class="nos-card"><div class="nos-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div class="nos-t">Estructura</div><p class="nos-p">Asamblea General como máxima autoridad, apoyada por Tesorería y Revisoría Fiscal, quienes velan por el correcto manejo y crecimiento de los recursos.</p></div>
+      <div class="nos-card"><div class="nos-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="nos-t">Reuniones</div><p class="nos-p">Asambleas ordinarias mensuales para revisar el estado financiero, aprobar proposiciones y fortalecer el vínculo entre todos los socios.</p></div>
     </div>
   </div>
 </div>
 
 <footer>
-  <div class="footer-inner">
-    <div class="footer-logo">Fondo Familiar Francihelena</div>
-    <div class="footer-tagline">Familia · Confianza · Unidad</div>
-    <div class="footer-copy">© 2026 · Archivo familiar digital</div>
-  </div>
+  <div class="ft-logo">Fondo Familiar Francihelena</div>
+  <div class="ft-tag">Familia · Confianza · Unidad</div>
+  <div class="ft-copy">© 2026 · Archivo familiar digital</div>
 </footer>
 
-<!-- ═══ PIN MODAL ═══ -->
-
-<div class="pin-overlay" id="pin-overlay">
+<!-- PIN MODAL -->
+<div class="pin-ov" id="pin-ov">
   <div class="pin-box">
-    <div class="pin-icon">🔐</div>
+    <div class="pin-ico">🔐</div>
     <h4>Informe de Tesorería</h4>
     <p>Ingresa la contraseña para ver el Punto 5 — información financiera reservada</p>
-    <input class="pin-input" type="password" id="pin-input" maxlength="30" placeholder="••••••" onkeydown="if(event.key==='Enter')checkPin()">
-    <div class="pin-error" id="pin-error"></div>
-    <button class="pin-submit" onclick="checkPin()">Acceder</button><br>
+    <input class="pin-in" type="password" id="pin-in" maxlength="30" placeholder="••••••" onkeydown="if(event.key==='Enter')chkPin()">
+    <div class="pin-err" id="pin-err"></div>
+    <button class="pin-go" onclick="chkPin()">Acceder</button><br>
     <button class="pin-cancel" onclick="closePin()">Cancelar</button>
   </div>
 </div>
 
 <script>
-// ── CONTRASEÑA (cámbiala aquí) ───────────────────────────────────────────────
-const TREASURY_PASSWORD = 'Cra6#5-37';
+const PWD = 'Cra6#5-37';
+let unlocked = false, pinTarget = null;
 
-// ── DATOS ────────────────────────────────────────────────────────────────────
 const ACTAS = [
   {
-    id:"abril-2026",tipo:"Asamblea General",fecha_display:"19 de Abril, 2026",
-    fecha_iso:"2026-04-19",hora_inicio:"4:05 PM",hora_fin:"4:45 PM",
-    total_asistentes:13,
-    resumen:"Verificación de quórum, informes de tesorería, proposición sobre reglamentación de fechas de pago y celebración de cumpleaños.",
-    quorum:{
-      filas:[
-        {clasificacion:"Locales",presentes:7,con_excusa:"—",sin_excusa:"—",total:7,notas:""},
-        {clasificacion:"Metropolitanos",presentes:2,con_excusa:0,sin_excusa:0,total:2,notas:"Ramiro y Liz Aguilar"},
-        {clasificacion:"No locales / Virtuales",presentes:5,con_excusa:0,sin_excusa:0,total:5,notas:"Yezid, Patricia, Kico, Mao Matilla y Lalita"}
-      ],
-      total:{presentes:14,con_excusa:0,sin_excusa:0,total:13}
-    },
-    rifas:{entrada:"Manuel Felipe",salida:"Mao Mantilla"},
-    acta_anterior:["Camilo ofrece cuenta Bancolombia para consignaciones del fondo.","Respecto a socios inactivos, se acordó enviarles comunicado informando el descuento de mora sobre aportes."],
-    correspondencia:null,
-    tesoreria:[
-      {concepto:"💰 Caja",valor:"30.232.728"},
-      {concepto:"📂 Cartera",valor:"112.393.711"},
-      {concepto:"📈 Aportes y Utilidades",valor:"139.515.990"},
-      {concepto:"🏦 Reserva Patrimonial",valor:"3.110.512"}
-    ],
-    proposiciones:[{
-      titulo:"Reglamentación de Fechas de Pago",presentada_por:"Bequi",
-      puntos:[
-        "El día <strong>22 de cada mes</strong> es el corte para recibir aportes y abonos a préstamos.",
-        "Los socios pueden pagar hasta el día 30, con los intereses causados desde el día 22 hasta la fecha de pago.",
-        "No se reciben abonos parciales sin pago previo de los intereses causados.",
-        "Para socios externos, la fecha de pago corresponde a la misma fecha en que se realizó el crédito.",
-        "Si se pagan solo intereses el día 22 y se hace abono a capital el día 30, se deben pagar los días de interés corridos (días 23 al 30)."
-      ],
-      pendiente:"Redacción formal para incorporar al reglamento del fondo.",
-      resultado:"Aprobada por unanimidad"
-    }],
-    cumpleanos:[{nombre:"Mauricio Adarme",dia:9},{nombre:"Bequi",dia:10},{nombre:"Manuel Felipe",dia:13},{nombre:"Liz Aguilar",dia:28}],
-    proxima_reunion:"24 de Mayo de 2026"
+    id:'abril-2026', tipo:'Asamblea General', fd:'19 de Abril, 2026',
+    hi:'4:05 PM', hf:'4:45 PM', qa:13,
+    res:'Reglamentación de fechas de pago aprobada por unanimidad. Rifas, celebración de cumpleaños y cierre de agenda.',
+    quorum:{filas:[
+      {c:'Locales',p:7,e:'—',s:'—',t:7,n:''},
+      {c:'Metropolitanos',p:2,e:0,s:0,t:2,n:'Ramiro y Liz Aguilar'},
+      {c:'No locales / Virtuales',p:5,e:0,s:0,t:5,n:'Yezid, Patricia, Kico, Mao Matilla y Lalita'}
+    ],tot:{p:14,e:0,s:0,t:13}},
+    rifas:{e:'Manuel Felipe',s:'Mao Mantilla'},
+    aa:['Camilo ofrece cuenta Bancolombia para consignaciones del fondo.','Socios inactivos: comunicado de descuento de mora sobre aportes.'],
+    corr:null,
+    tes:[{c:'💰 Caja',v:'30.232.728'},{c:'📂 Cartera',v:'112.393.711'},{c:'📈 Aportes y Utilidades',v:'139.515.990'},{c:'🏦 Reserva Patrimonial',v:'3.110.512'}],
+    props:[{t:'Reglamentación de Fechas de Pago',a:'Bequi',ps:['El día <strong>22 de cada mes</strong> es el corte para recibir aportes y abonos.','Los socios pueden pagar hasta el día 30 con los intereses causados desde el 22.','No se reciben abonos parciales sin pago previo de intereses.','Para socios externos, fecha de pago = fecha del crédito original.','Abono de capital el día 30 genera intereses de los días 23 al 30.'],pend:'Redacción formal para el reglamento del fondo.',res:'Aprobada por unanimidad'}],
+    cumple:[{n:'Mauricio Adarme',d:9},{n:'Bequi',d:10},{n:'Manuel Felipe',d:13},{n:'Liz Aguilar',d:28}],
+    prox:'24 de Mayo de 2026'
   },
   {
-    id:"marzo-2026",tipo:"Asamblea General",fecha_display:"15 de Marzo, 2026",
-    fecha_iso:"2026-03-15",hora_inicio:"4:00 PM",hora_fin:"5:01 PM",
-    total_asistentes:31,
-    resumen:"Manejo de efectivo y cuentas, socios inactivos y morosos, aclaración sobre el 4x1000 y actividad de cierre (hot dogs).",
-    quorum:{
-      filas:[
-        {clasificacion:"Locales",presentes:18,con_excusa:0,sin_excusa:0,total:18,notas:""},
-        {clasificacion:"Metropolitanos",presentes:2,con_excusa:0,sin_excusa:0,total:2,notas:""},
-        {clasificacion:"No locales / Virtuales",presentes:6,con_excusa:0,sin_excusa:0,total:6,notas:"Yezi, Mauricio A, Paty, Elkin, Lala, Mao Mantilla"},
-        {clasificacion:"Autorizados",presentes:0,con_excusa:0,sin_excusa:1,total:0,notas:""},
-        {clasificacion:"Menores",presentes:5,con_excusa:0,sin_excusa:0,total:5,notas:""}
-      ],
-      total:{presentes:31,con_excusa:0,sin_excusa:0,total:31}
-    },
-    rifas:{entrada:"Samuel Adarme",salida:"Liz Adarme"},
-    acta_anterior:[],
-    correspondencia:null,
-    tesoreria:[
-      {concepto:"💰 Caja y Bancos",valor:"14.044.279"},
-      {concepto:"📂 Cartera",valor:"127.103.908"},
-      {concepto:"📈 Aportes y Utilidades",valor:"138.358.800"},
-      {concepto:"🏦 Reserva Patrimonial",valor:"3.112.000"}
+    id:'marzo-2026', tipo:'Asamblea General', fd:'15 de Marzo, 2026',
+    hi:'4:00 PM', hf:'5:01 PM', qa:31,
+    res:'Manejo de efectivo y cuentas Nequi, socios morosos e inactivos, aclaración 4x1000. Actividad: hot dogs.',
+    quorum:{filas:[
+      {c:'Locales',p:18,e:0,s:0,t:18,n:''},
+      {c:'Metropolitanos',p:2,e:0,s:0,t:2,n:''},
+      {c:'No locales / Virtuales',p:6,e:0,s:0,t:6,n:'Yezi, Mauricio A, Paty, Elkin, Lala, Mao'},
+      {c:'Autorizados',p:0,e:0,s:1,t:0,n:''},
+      {c:'Menores',p:5,e:0,s:0,t:5,n:''}
+    ],tot:{p:31,e:0,s:0,t:31}},
+    rifas:{e:'Samuel Adarme',s:'Liz Adarme'},
+    aa:[], corr:null,
+    tes:[{c:'💰 Caja y Bancos',v:'14.044.279'},{c:'📂 Cartera',v:'127.103.908'},{c:'📈 Aportes y Utilidades',v:'138.358.800'},{c:'🏦 Reserva Patrimonial',v:'3.112.000'}],
+    props:[
+      {t:'Manejo de Efectivo y Cuentas',a:'Asamblea',ps:['Saturación en Nequi (tope 3M sin costo).','Se acordó usar cuentas alternativas para evitar 4x1000 y bloqueos.'],pend:null,res:'Acuerdo tomado'},
+      {t:'Socios Inactivos y Morosos',a:'Asamblea',ps:['Mora de 3 meses → estado inactivo: sin intereses ni rifas.','Cruce de deuda con aportes, previo aviso escrito (gestión: María).'],pend:null,res:'Definición aprobada'},
+      {t:'Aclaración 4x1000',a:'Asamblea',ps:['Cobros financieros por préstamos los asume el socio solicitante.'],pend:null,res:'Ratificado'}
     ],
-    proposiciones:[
-      {titulo:"Manejo de Efectivo y Cuentas",presentada_por:"Asamblea",puntos:["Se discutió la dificultad de saturación en la cuenta de Nequi (límite de 3 millones para retiros sin costo).","Se analizó la situación del préstamo de la inmobiliaria de Esperanza.","Se acordó buscar mecanismos para recibir dinero en efectivo o usar cuentas alternativas (como la de Camilo o Yezid vía cédula/número) para evitar el cobro del 4x1000 y bloqueos por topes."],pendiente:null,resultado:"Acuerdo tomado"},
-      {titulo:"Socios Inactivos y Morosos",presentada_por:"Asamblea",puntos:["Los socios con mora prolongada (3 meses) entrarán en estado inactivo: no generan intereses ni participan en rifas.","Se cruzará la deuda de mora con sus aportes tras previo aviso por escrito (gestión a cargo de María)."],pendiente:null,resultado:"Definición aprobada"},
-      {titulo:"Aclaración 4x1000",presentada_por:"Asamblea",puntos:["Se mantiene el acuerdo de que cualquier cobro financiero derivado de préstamos debe ser asumido por el socio solicitante."],pendiente:null,resultado:"Acuerdo ratificado"}
-    ],
-    cumpleanos:[{nombre:"Luna",dia:null},{nombre:"Martina",dia:null},{nombre:"Sarita",dia:null},{nombre:"Dani",dia:null}],
-    proxima_reunion:"19 de Abril de 2026"
+    cumple:[{n:'Luna',d:null},{n:'Martina',d:null},{n:'Sarita',d:null},{n:'Dani',d:null}],
+    prox:'19 de Abril de 2026'
   }
 ];
 
-// ── ESTADO ───────────────────────────────────────────────────────────────────
-let unlocked = false;
-let currentActaId = null;
-
-// ── RENDER ───────────────────────────────────────────────────────────────────
+// ─── INIT ────────────────────────────────────────────────────────────────────
 function init() {
-  document.getElementById('stat-actas').textContent = ACTAS.length;
-  if (ACTAS.length) {
-    document.getElementById('stat-asistentes').textContent = ACTAS[0].total_asistentes;
-    document.getElementById('inicio-titulo').textContent = ACTAS[0].tipo + ' · ' + ACTAS[0].fecha_display;
-  }
-  document.getElementById('inicio-cards').innerHTML = ACTAS.slice(0,2).map(cardHTML).join('');
-  document.getElementById('todas-cards').innerHTML = ACTAS.map(cardHTML).join('');
+  document.getElementById('s-actas').textContent = ACTAS.length;
+  document.getElementById('s-asis').textContent = ACTAS[0].qa;
+  document.getElementById('t-inicio').textContent = ACTAS[0].tipo + ' · ' + ACTAS[0].fd;
+  document.getElementById('g-inicio').innerHTML = ACTAS.slice(0,2).map(cHTML).join('');
+  document.getElementById('g-todas').innerHTML = ACTAS.map(cHTML).join('');
 }
 
-function cardHTML(a) {
-  return `<article class="acta-card" onclick="verActa('${a.id}')" role="button" tabindex="0">
-    <div class="card-tipo">${a.tipo}</div>
-    <div class="card-fecha">${a.fecha_display}</div>
-    <div class="card-resumen">${a.resumen}</div>
-    <div class="card-footer">
-      <span class="card-meta">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity:.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-        ${a.total_asistentes} presentes · ${a.hora_inicio}
+function cHTML(a) {
+  return `<article class="acard" onclick="verActa('${a.id}')">
+    <div class="acard-banner"></div>
+    <div class="acard-top">
+      <div class="acard-meta-top">
+        <span class="acard-tipo">${a.tipo}</span>
+        <span class="acard-quorum">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          ${a.qa}
+        </span>
+      </div>
+      <div class="acard-fecha">${a.fd}</div>
+      <div class="acard-resumen">${a.res}</div>
+    </div>
+    <div class="acard-divider"></div>
+    <div class="acard-foot">
+      <span class="acard-hora">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        ${a.hi}
       </span>
-      <span class="card-link">Ver acta <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      <span class="acard-cta">Ver acta <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
     </div>
   </article>`;
 }
 
+// ─── DETALLE ─────────────────────────────────────────────────────────────────
 function verActa(id) {
-  currentActaId = id;
-  unlocked = false;
-  const a = ACTAS.find(x => x.id === id);
+  const a = ACTAS.find(x=>x.id===id);
   if (!a) return;
-  showView('actas');
-  document.getElementById('actas-list').style.display = 'none';
-  const det = document.getElementById('acta-detalle');
-  det.style.display = 'block';
-  det.innerHTML = buildDetalle(a);
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function ocultarDetalle() {
-  document.getElementById('actas-list').style.display = 'block';
-  document.getElementById('acta-detalle').style.display = 'none';
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-// ── DETALLE ──────────────────────────────────────────────────────────────────
-function buildDetalle(a) {
-  return `<div class="detalle-wrap">
-    <div class="detalle-header">
-      <button class="back-btn" onclick="ocultarDetalle()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Volver al listado
-      </button>
-      <div class="detalle-eyebrow">${a.tipo}</div>
-      <div class="detalle-title">${a.fecha_display}</div>
-      <div class="detalle-meta">
-        <span class="detalle-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>${a.fecha_display}</span>
-        <span class="detalle-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>${a.hora_inicio} – ${a.hora_fin}</span>
-        <span class="detalle-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>${a.total_asistentes} asistentes</span>
-      </div>
-    </div>
-    <div class="detalle-body">
-      ${buildQuorum(a)}
-      ${a.rifas ? buildRifas(a) : ''}
-      ${buildActaAnterior(a)}
-      ${buildCorrespondencia(a)}
-      ${buildTesoreria(a)}
-      ${a.proposiciones && a.proposiciones.length ? buildProposiciones(a) : ''}
-      ${a.cumpleanos && a.cumpleanos.length ? buildCumpleanos(a) : ''}
-      ${a.proxima_reunion ? buildProxima(a) : ''}
-    </div>
-  </div>`;
-}
-
-function fila(num, titulo, contenido) {
-  return `<div class="acta-seccion">
-    <div class="seccion-label"><span class="seccion-num">Punto ${num}</span><div class="seccion-titulo">${titulo}</div></div>
-    <div class="seccion-body">${contenido}</div>
-  </div>`;
-}
-
-function buildQuorum(a) {
-  const rows = a.quorum.filas.map(f=>`<tr><td>${f.clasificacion}</td><td>${f.presentes}</td><td>${f.con_excusa}</td><td>${f.sin_excusa}</td><td><strong>${f.total}</strong></td><td style="font-size:.82rem;color:var(--ink-soft)">${f.notas}</td></tr>`).join('');
-  const t = a.quorum.total;
-  return fila(1,'Verificación del Quórum',`
-    <table class="tabla-base tq">
-      <thead><tr><th>Clasificación</th><th>Presentes</th><th>Con excusa</th><th>Sin excusa</th><th>Total</th><th>Notas</th></tr></thead>
-      <tbody>${rows}<tr class="total-row"><td><strong>Total</strong></td><td><strong>${t.presentes}</strong></td><td><strong>${t.con_excusa}</strong></td><td><strong>${t.sin_excusa}</strong></td><td><strong>${t.total}</strong></td><td></td></tr></tbody>
-    </table>`);
-}
-
-function buildRifas(a) {
-  return fila(2,'Rifas de Aportes',`
-    <div class="rifas-row">
-      <div class="rifa-card rifa-card-entrada"><div class="rifa-etiqueta">Rifa de entrada</div><div class="rifa-ganador">${a.rifas.entrada}</div></div>
-      <div class="rifa-card rifa-card-salida"><div class="rifa-etiqueta">Rifa de salida</div><div class="rifa-ganador">${a.rifas.salida}</div></div>
-    </div>`);
-}
-
-function buildActaAnterior(a) {
-  if (!a.acta_anterior || !a.acta_anterior.length)
-    return fila(3,'Lectura del Acta Anterior','<span style="font-style:italic;color:var(--ink-soft)">Sin novedades pendientes del acta anterior.</span>');
-  const items = a.acta_anterior.map(i=>`<li style="display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--border-light)"><span style="color:var(--gold);flex-shrink:0">—</span>${i}</li>`).join('');
-  return fila(3,'Lectura del Acta Anterior',`Se realizó la lectura del acta anterior. Proposiciones registradas:<ul style="list-style:none;padding:0;margin-top:12px">${items}</ul>`);
-}
-
-function buildCorrespondencia(a) {
-  const contenido = !a.correspondencia
-    ? '<span class="corr-empty">No hay nueva correspondencia en este período.</span>'
-    : (Array.isArray(a.correspondencia)
-        ? `<ul style="list-style:none;padding:0">${a.correspondencia.map(c=>`<li style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border-light)"><span style="color:var(--gold)">›</span>${c}</li>`).join('')}</ul>`
-        : a.correspondencia);
-  return fila(4,'Lectura de Correspondencia', contenido);
-}
-
-// ── PUNTO 5: TESORERÍA CON CANDADO ──────────────────────────────────────────
-function buildTesoreria(a) {
-  const rows = a.tesoreria.map(t=>`<tr><td>${t.concepto}</td><td class="valor-col">$ ${t.valor}</td></tr>`).join('');
-  const tableHTML = `<table class="tabla-base tt"><thead><tr><th>Concepto</th><th>Valor ($)</th></tr></thead><tbody>${rows}</tbody></table>`;
-
-  const locked = `
-    <div class="tesoreria-locked" id="tl-btn" onclick="requestTreasury('${a.id}')">
-      <span class="tl-icon">🔒</span>
-      <div>
-        <div class="tl-label">Punto 5 — Informe de Tesorería y Revisoría Fiscal</div>
-        <div class="tl-hint">Información financiera protegida · Haz clic para acceder</div>
-      </div>
-      <span class="tl-arrow">›</span>
-    </div>
-    <div class="tesoreria-content" id="tl-content">
-      <div class="tesoreria-header-bar">
-        <span class="tl-open-label">🔓 Tesorería desbloqueada</span>
-        <button class="tl-lock-btn" onclick="lockTreasury()">🔒 Bloquear</button>
-      </div>
-      ${tableHTML}
-    </div>`;
-
-  return fila(5,'Informe de Tesorería y Revisoría Fiscal', locked);
-}
-
-function requestTreasury(id) {
-  if (unlocked) { showTreasury(); return; }
-  currentActaId = id;
-  document.getElementById('pin-input').value = '';
-  document.getElementById('pin-error').textContent = '';
-  document.getElementById('pin-overlay').classList.add('open');
-  setTimeout(()=>document.getElementById('pin-input').focus(),120);
-}
-
-function checkPin() {
-  const val = document.getElementById('pin-input').value;
-  if (val === TREASURY_PASSWORD) {
-    unlocked = true;
-    closePin();
-    showTreasury();
-  } else {
-    document.getElementById('pin-error').textContent = 'Contraseña incorrecta. Intenta de nuevo.';
-    document.getElementById('pin-input').value = '';
-    document.getElementById('pin-input').focus();
-  }
-}
-
-function closePin() {
-  document.getElementById('pin-overlay').classList.remove('open');
-}
-
-function showTreasury() {
-  const btn = document.getElementById('tl-btn');
-  const content = document.getElementById('tl-content');
-  if (btn) btn.style.display = 'none';
-  if (content) content.classList.add('visible');
-}
-
-function lockTreasury() {
   unlocked = false;
-  const btn = document.getElementById('tl-btn');
-  const content = document.getElementById('tl-content');
-  if (btn) btn.style.display = 'flex';
-  if (content) content.classList.remove('visible');
+  showV('actas');
+  document.getElementById('l-actas').style.display = 'none';
+  const d = document.getElementById('l-det');
+  d.style.display = 'block';
+  d.innerHTML = buildDet(a);
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-
-function buildProposiciones(a) {
-  const props = a.proposiciones.map(p=>`
-    <div class="proposicion-card">
-      <div class="prop-header"><div class="prop-titulo">${p.titulo}</div><div class="prop-autor">Presentada por: ${p.presentada_por}</div></div>
-      <ul class="prop-puntos">${p.puntos.map(pt=>`<li>${pt}</li>`).join('')}</ul>
-      ${p.pendiente?`<div class="prop-pendiente"><strong>Pendiente:</strong> ${p.pendiente}</div>`:''}
-      <div class="aprobado-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>${p.resultado}</div>
-    </div>`).join('');
-  return fila(6,'Proposiciones y Varios', props);
-}
-
-function buildCumpleanos(a) {
-  const pills = a.cumpleanos.map(c=>`
-    <div class="cumple-item">
-      <div class="cumple-nombre">${c.nombre}</div>
-      ${c.dia?`<div class="cumple-dia">Día ${c.dia}</div>`:''}
-    </div>`).join('');
-  return fila(7,'Celebración de Cumpleaños',`<div class="cumple-grid">${pills}</div>`);
-}
-
-function buildProxima(a) {
-  return fila(9,'Fecha de la Próxima Reunión',`
-    <div class="proxima-banner">
-      <div class="proxima-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
-      <div><div class="proxima-label">Próxima asamblea</div><div class="proxima-fecha">${a.proxima_reunion}</div></div>
-    </div>`);
-}
-
-// ── NAVEGACIÓN ───────────────────────────────────────────────────────────────
-function showView(v) {
-  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('view-'+v).classList.add('active');
-  const idx = ['inicio','actas','nosotros'].indexOf(v);
-  if (idx>=0) document.querySelectorAll('.nav-btn')[idx].classList.add('active');
-  if (v==='actas') {
-    document.getElementById('actas-list').style.display='block';
-    document.getElementById('acta-detalle').style.display='none';
-  }
+function backList() {
+  document.getElementById('l-actas').style.display = 'block';
+  document.getElementById('l-det').style.display = 'none';
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-document.addEventListener('keydown',e=>{
-  if (e.key==='Enter' && e.target.classList.contains('acta-card')) e.target.click();
-  if (e.key==='Escape') closePin();
-});
+function buildDet(a) {
+  return `<div class="det">
+    <div class="det-head noise">
+      <div class="det-grid-lines"></div>
+      <button class="back-btn" onclick="backList()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Volver
+      </button>
+      <div class="det-eye">${a.tipo}</div>
+      <div class="det-title">${a.fd}</div>
+      <div class="det-chips">
+        <span class="det-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>${a.fd}</span>
+        <span class="det-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>${a.hi} – ${a.hf}</span>
+        <span class="det-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>${a.qa} asistentes</span>
+      </div>
+    </div>
+    <div class="det-body">
+      ${sQ(a)}${sR(a)}${sAA(a)}${sCo(a)}${sTe(a)}
+      ${a.props&&a.props.length?sPr(a):''}
+      ${a.cumple&&a.cumple.length?sCu(a):''}
+      ${a.prox?sPx(a):''}
+    </div>
+  </div>`;
+}
+
+function sec(n,t,c) {
+  return `<div class="sec"><div class="sec-lbl"><span class="sec-n">Punto ${n}</span><div class="sec-t">${t}</div></div><div class="sec-c">${c}</div></div>`;
+}
+
+function sQ(a) {
+  const r = a.quorum.filas.map(f=>`<tr><td>${f.c}</td><td>${f.p}</td><td>${f.e}</td><td>${f.s}</td><td><strong>${f.t}</strong></td><td style="font-size:.78rem;color:var(--subtle)">${f.n}</td></tr>`).join('');
+  const t = a.quorum.tot;
+  return sec(1,'Verificación del Quórum',`<table class="tbl"><thead><tr><th>Clasificación</th><th>Presentes</th><th>Con excusa</th><th>Sin excusa</th><th>Total</th><th>Notas</th></tr></thead><tbody>${r}<tr class="total"><td><strong>Total</strong></td><td><strong>${t.p}</strong></td><td><strong>${t.e}</strong></td><td><strong>${t.s}</strong></td><td><strong>${t.t}</strong></td><td></td></tr></tbody></table>`);
+}
+
+function sR(a) {
+  if(!a.rifas) return '';
+  return sec(2,'Rifas de Aportes',`<div class="rifas"><div class="rifa rifa-e"><div class="rifa-lbl">Entrada</div><div class="rifa-name">${a.rifas.e}</div></div><div class="rifa rifa-s"><div class="rifa-lbl">Salida</div><div class="rifa-name">${a.rifas.s}</div></div></div>`);
+}
+
+function sAA(a) {
+  if(!a.aa||!a.aa.length) return sec(3,'Lectura del Acta Anterior','<span style="font-style:italic;color:var(--subtle)">Sin novedades pendientes del acta anterior.</span>');
+  const li = a.aa.map(i=>`<li style="display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--grey)"><span style="color:var(--sapphire)">›</span>${i}</li>`).join('');
+  return sec(3,'Lectura del Acta Anterior',`Se realizó la lectura del acta anterior:<ul style="list-style:none;padding:0;margin-top:10px">${li}</ul>`);
+}
+
+function sCo(a) {
+  return sec(4,'Lectura de Correspondencia',!a.corr?'<span style="font-style:italic;color:var(--subtle)">No hay nueva correspondencia en este período.</span>':a.corr);
+}
+
+function sTe(a) {
+  const rows = a.tes.map(t=>`<tr><td>${t.c}</td><td>$ ${t.v}</td></tr>`).join('');
+  const table = `<table class="tbl tbl-t"><thead><tr><th>Concepto</th><th>Valor ($)</th></tr></thead><tbody>${rows}</tbody></table>`;
+  return sec(5,'Informe de Tesorería y Revisoría Fiscal',`
+    <div class="t-lock" id="tl-btn" onclick="reqTeso('det')">
+      <span class="tl-ico">🔒</span>
+      <div><div class="tl-t">Punto 5 — Informe de Tesorería</div><div class="tl-h">Información financiera protegida · Haz clic para acceder</div></div>
+      <span class="tl-arr">›</span>
+    </div>
+    <div class="t-open" id="tl-data">
+      <div class="t-bar">
+        <span class="t-bar-lbl">🔓 Desbloqueado</span>
+        <button class="t-lock-btn" onclick="lockTeso()">🔒 Bloquear</button>
+      </div>
+      ${table}
+    </div>`);
+}
+
+function sPr(a) {
+  const c = a.props.map(p=>`
+    <div class="prop-card">
+      <div class="prop-tit">${p.t}</div>
+      <div class="prop-aut">Presentada por: ${p.a}</div>
+      <ul class="prop-list">${p.ps.map(x=>`<li>${x}</li>`).join('')}</ul>
+      ${p.pend?`<div class="prop-pend"><strong>Pendiente:</strong> ${p.pend}</div>`:''}
+      <div class="prop-badge"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>${p.res}</div>
+    </div>`).join('');
+  return sec(6,'Proposiciones y Varios',c);
+}
+
+function sCu(a) {
+  const ch = a.cumple.map(c=>`<div class="cumple-chip"><div class="cumple-n">${c.n}</div>${c.d?`<div class="cumple-d">Día ${c.d}</div>`:''}</div>`).join('');
+  return sec(7,'Celebración de Cumpleaños',`<div class="cumple-wrap">${ch}</div>`);
+}
+
+function sPx(a) {
+  return sec(9,'Fecha de la Próxima Reunión',`<div class="proxima"><div class="prox-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div><div><div class="prox-lbl">Próxima asamblea</div><div class="prox-fecha">${a.prox}</div></div></div>`);
+}
+
+// ─── TESORERÍA ───────────────────────────────────────────────────────────────
+function reqTeso(target) {
+  if (unlocked) { showTeso(target); return; }
+  pinTarget = target;
+  document.getElementById('pin-in').value = '';
+  document.getElementById('pin-err').textContent = '';
+  document.getElementById('pin-ov').classList.add('on');
+  setTimeout(()=>document.getElementById('pin-in').focus(), 120);
+}
+function chkPin() {
+  const v = document.getElementById('pin-in').value;
+  if (v === PWD) { unlocked=true; closePin(); showTeso(pinTarget); }
+  else { document.getElementById('pin-err').textContent='Contraseña incorrecta. Intenta de nuevo.'; document.getElementById('pin-in').value=''; document.getElementById('pin-in').focus(); }
+}
+function closePin() { document.getElementById('pin-ov').classList.remove('on'); }
+function showTeso(t) {
+  if (t==='hero') {
+    document.getElementById('hc-lock-wrap').style.display='none';
+    document.getElementById('hc-data').style.display='block';
+    return;
+  }
+  const b=document.getElementById('tl-btn'), d=document.getElementById('tl-data');
+  if(b) b.style.display='none';
+  if(d) d.classList.add('vis');
+}
+function lockTeso() {
+  unlocked=false;
+  const b=document.getElementById('tl-btn'), d=document.getElementById('tl-data');
+  if(b) b.style.display='flex';
+  if(d) d.classList.remove('vis');
+}
+
+// ─── NAV ─────────────────────────────────────────────────────────────────────
+function showV(v) {
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  document.getElementById('v-'+v).classList.add('on');
+  ['inicio','actas','nosotros'].forEach((n,i)=>{if(n===v)document.querySelectorAll('.nb')[i].classList.add('on');});
+  if(v==='actas'){document.getElementById('l-actas').style.display='block';document.getElementById('l-det').style.display='none';}
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePin();});
 
 init();
 </script>
-
 </body>
 </html>
