@@ -748,6 +748,30 @@ function showTeso(t){if(t==='hero'){document.getElementById('hc-lock-wrap').styl
 function lockTeso(){unlocked=false;const b=document.getElementById('tl-btn'),d=document.getElementById('tl-data');if(b)b.style.display='flex';if(d)d.classList.remove('vis');}
 
 /* ══════════════════════════════════════
+   IMAGE COMPRESSION
+══════════════════════════════════════ */
+function compressImage(file, maxPx, quality) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      let { width, height } = img;
+      if (width > maxPx || height > maxPx) {
+        if (width >= height) { height = Math.round(height * maxPx / width); width = maxPx; }
+        else { width = Math.round(width * maxPx / height); height = maxPx; }
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = width; canvas.height = height;
+      canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+      canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('Compression failed')), 'image/jpeg', quality);
+    };
+    img.onerror = reject;
+    img.src = url;
+  });
+}
+
+/* ══════════════════════════════════════
    SUPABASE CONFIG
 ══════════════════════════════════════ */
 const SB_URL  = 'https://tnncnfyfdriewlwokprv.supabase.co';
@@ -781,12 +805,12 @@ const sb = {
   },
 
   async uploadPhoto(file) {
-    const ext  = file.name.split('.').pop() || 'jpg';
-    const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    const compressed = await compressImage(file, 1400, 0.82);
+    const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.jpg`;
     const r = await fetch(`${SB_URL}/storage/v1/object/${BUCKET}/${path}`, {
       method: 'POST',
-      headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': file.type },
-      body: file
+      headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': 'image/jpeg' },
+      body: compressed
     });
     if (!r.ok) throw new Error(await r.text());
     return `${SB_URL}/storage/v1/object/public/${BUCKET}/${path}`;
