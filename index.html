@@ -373,7 +373,7 @@ footer{background:var(--blue-900);border-top:1px solid rgba(255,255,255,.06);pad
 
 /* ── RESPONSIVE ── */
 @media(max-width:960px){
-  header{padding:0 20px}
+  header{padding:0 16px}
   .hero-inner{grid-template-columns:1fr;padding:56px 24px;gap:40px}
   .hero-card{display:none}
   .wrap{padding:52px 24px}
@@ -384,12 +384,44 @@ footer{background:var(--blue-900);border-top:1px solid rgba(255,255,255,.06);pad
   .sub-hero{padding:96px 24px 52px}
   footer{padding:36px 24px}
   .mc-types{flex-wrap:wrap}
+  /* hide text labels in nav, keep icons readable */
+  nav{gap:0}
+  .nb{padding:7px 10px;font-size:.62rem;letter-spacing:.04em}
+  /* search trigger: icon only on tablet */
+  .search-trigger span{display:none}
+  .search-trigger kbd{display:none}
+  .search-trigger{padding:8px 10px;min-width:36px;justify-content:center}
+  /* search modal full width */
+  .search-modal{margin:0 12px}
+  .search-ov{padding-top:64px}
+}
+@media(max-width:640px){
+  /* search modal nearly full screen */
+  .search-modal{margin:0 8px}
+  .search-ov{padding-top:56px;align-items:flex-start}
+  .search-results{max-height:55vh}
+  .search-footer{display:none}
 }
 @media(max-width:480px){
   .hero h1{font-size:2.2rem}
   .brand-txt span{display:none}
   .hero-stats{gap:24px}
   .hs-n{font-size:2rem}
+  header{padding:0 12px}
+  /* stack brand + search, hide nav text */
+  .nb{padding:6px 8px;font-size:.58rem}
+  nav{gap:0}
+  /* search icon only */
+  .search-trigger{padding:8px;border-radius:8px}
+  /* full-screen search on mobile */
+  .search-ov{padding:0}
+  .search-modal{margin:0;border-radius:0;min-height:100dvh;display:flex;flex-direction:column}
+  .search-results{flex:1;max-height:none}
+  .search-footer{display:none}
+  .search-input{font-size:.95rem}
+  /* reply composer stack */
+  .reply-composer{flex-wrap:wrap}
+  .reply-name-input{width:100%}
 }
 </style>
 </head>
@@ -410,9 +442,9 @@ footer{background:var(--blue-900);border-top:1px solid rgba(255,255,255,.06);pad
     <button class="nb" onclick="showV('muro')">Muro</button>
     <button class="nb" onclick="showV('nosotros')">El Fondo</button>
   </nav>
-  <button class="search-trigger" onclick="openSearch()">
+  <button class="search-trigger" onclick="openSearch()" aria-label="Buscar">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    Buscar
+    <span>Buscar</span>
     <kbd>⌘K</kbd>
   </button>
 </header>
