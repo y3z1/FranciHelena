@@ -272,6 +272,20 @@ nav{display:flex;gap:2px;align-items:center}
 .post-link-url{font-size:.82rem;color:var(--blue-600);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .post-link-arr svg{width:14px;height:14px;color:var(--blue-400)}
 
+/* ── AUDIO PLAYER ── */
+.post-audio{padding:14px 20px 16px}
+.audio-player{background:var(--blue-50);border:1px solid var(--blue-200);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:14px}
+.audio-play-btn{width:40px;height:40px;border-radius:50%;background:var(--blue-600);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s;box-shadow:0 2px 8px rgba(37,99,235,.3)}
+.audio-play-btn:hover{background:var(--blue-700);transform:scale(1.05)}
+.audio-play-btn svg{width:16px;height:16px;color:#fff;margin-left:2px}
+.audio-play-btn.playing svg{margin-left:0}
+.audio-info{flex:1;min-width:0}
+.audio-name{font-size:.78rem;font-weight:600;color:var(--blue-800);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:6px}
+.audio-progress{width:100%;height:4px;background:var(--blue-200);border-radius:2px;cursor:pointer;position:relative;margin-bottom:5px}
+.audio-progress-fill{height:100%;background:var(--blue-600);border-radius:2px;transition:width .1s linear;pointer-events:none}
+.audio-times{display:flex;justify-content:space-between;font-size:.6rem;color:var(--blue-500);font-variant-numeric:tabular-nums}
+.badge-audio{background:rgba(139,92,246,.1);color:#5B21B6}
+
 /* ── REACTIONS ── */
 .post-reactions{padding:0 20px 12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .reaction-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:20px;border:1.5px solid var(--border);background:var(--bg);cursor:pointer;font-size:.82rem;transition:all .15s;font-family:'Inter',sans-serif}
@@ -548,6 +562,10 @@ footer{background:var(--blue-900);border-top:1px solid rgba(255,255,255,.06);pad
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
           Enlace
         </button>
+        <button class="mc-type-btn" id="tb-audio" onclick="setType('audio')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          Audio
+        </button>
       </div>
 
       <!-- Panel: Foto -->
@@ -572,6 +590,31 @@ footer{background:var(--blue-900);border-top:1px solid rgba(255,255,255,.06);pad
       <div class="mc-panel" id="panel-link">
         <input class="mc-url-input" id="link-url" type="url" placeholder="https://instagram.com/… o cualquier enlace">
         <textarea class="mc-caption" id="cap-link" placeholder="Añade una descripción o comentario…"></textarea>
+      </div>
+
+      <!-- Panel: Audio -->
+      <div class="mc-panel" id="panel-audio">
+        <div class="mc-dropzone" id="audio-dropzone" onclick="document.getElementById('audio-input').click()" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropAudio(event)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          <p>Arrastra tu audio aquí</p>
+          <span>MP3, M4A, OGG, WAV · máx 50MB</span>
+          <input type="file" id="audio-input" accept="audio/*" onchange="handleAudio(this)">
+        </div>
+        <div id="audio-preview-wrap" style="display:none;margin-bottom:12px">
+          <div class="audio-player">
+            <button class="audio-play-btn" id="preview-play-btn" onclick="togglePreviewAudio()">
+              <svg id="preview-play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
+            <div class="audio-info">
+              <div class="audio-name" id="preview-audio-name">audio.mp3</div>
+              <div class="audio-progress" id="preview-progress" onclick="seekPreview(event)">
+                <div class="audio-progress-fill" id="preview-fill" style="width:0%"></div>
+              </div>
+              <div class="audio-times"><span id="preview-cur">0:00</span><span id="preview-dur">0:00</span></div>
+            </div>
+          </div>
+        </div>
+        <textarea class="mc-caption" id="cap-audio" placeholder="Añade una descripción o comentario…"></textarea>
       </div>
 
       <div class="mc-foot">
@@ -873,6 +916,17 @@ const sb = {
     if (!r.ok) throw new Error(await r.text());
     return `${SB_URL}/storage/v1/object/public/${BUCKET}/${path}`;
   },
+  async uploadAudio(file) {
+    const ext = file.name.split('.').pop() || 'mp3';
+    const path = `audio/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    const r = await fetch(`${SB_URL}/storage/v1/object/${BUCKET}/${path}`, {
+      method: 'POST',
+      headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': file.type || 'audio/mpeg' },
+      body: file
+    });
+    if (!r.ok) throw new Error(await r.text());
+    return { url: `${SB_URL}/storage/v1/object/public/${BUCKET}/${path}`, name: file.name };
+  },
 
   // Reactions
   async getReactions(postIds) {
@@ -946,7 +1000,7 @@ function updateAvatar() {
 
 function setType(t) {
   currentType = t;
-  ['foto','video','link'].forEach(x => {
+  ['foto','video','link','audio'].forEach(x => {
     document.getElementById('tb-'+x).classList.toggle('active', x===t);
     document.getElementById('panel-'+x).classList.toggle('on', x===t);
   });
@@ -978,6 +1032,64 @@ function dropFile(e) {
     };
     reader.readAsDataURL(file);
   }
+}
+
+// Audio handling
+let selectedAudio = null;
+let previewAudioEl = null;
+
+function handleAudio(input) {
+  const file = input.files[0]; if (!file) return;
+  selectedAudio = file;
+  showAudioPreview(file);
+}
+function dropAudio(e) {
+  e.preventDefault(); document.getElementById('audio-dropzone').classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('audio/')) { selectedAudio = file; showAudioPreview(file); }
+}
+function showAudioPreview(file) {
+  document.getElementById('audio-dropzone').style.display = 'none';
+  document.getElementById('audio-preview-wrap').style.display = 'block';
+  document.getElementById('preview-audio-name').textContent = file.name;
+  if (previewAudioEl) { previewAudioEl.pause(); previewAudioEl = null; }
+  previewAudioEl = new Audio(URL.createObjectURL(file));
+  previewAudioEl.ontimeupdate = updatePreviewProgress;
+  previewAudioEl.onloadedmetadata = () => { document.getElementById('preview-dur').textContent = fmtTime(previewAudioEl.duration); };
+  previewAudioEl.onended = () => {
+    document.getElementById('preview-play-icon').innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+    document.getElementById('preview-play-btn').classList.remove('playing');
+  };
+}
+function togglePreviewAudio() {
+  if (!previewAudioEl) return;
+  const btn = document.getElementById('preview-play-btn');
+  const icon = document.getElementById('preview-play-icon');
+  if (previewAudioEl.paused) {
+    previewAudioEl.play();
+    icon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+    btn.classList.add('playing');
+  } else {
+    previewAudioEl.pause();
+    icon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+    btn.classList.remove('playing');
+  }
+}
+function updatePreviewProgress() {
+  if (!previewAudioEl) return;
+  const pct = (previewAudioEl.currentTime / previewAudioEl.duration) * 100 || 0;
+  document.getElementById('preview-fill').style.width = pct + '%';
+  document.getElementById('preview-cur').textContent = fmtTime(previewAudioEl.currentTime);
+}
+function seekPreview(e) {
+  if (!previewAudioEl) return;
+  const bar = e.currentTarget; const rect = bar.getBoundingClientRect();
+  previewAudioEl.currentTime = ((e.clientX - rect.left) / rect.width) * previewAudioEl.duration;
+}
+function fmtTime(s) {
+  if (!s || isNaN(s)) return '0:00';
+  const m = Math.floor(s/60), sec = Math.floor(s%60);
+  return m + ':' + String(sec).padStart(2,'0');
 }
 
 function getYTId(url) {
@@ -1021,11 +1133,17 @@ async function publicar() {
       const ytId = getYTId(url);
       if (!ytId) { showToast('URL de YouTube no válida 📺','red'); btn.disabled=false; btn.innerHTML=postBtnHTML(); return; }
       data.yt_id = ytId; data.caption = document.getElementById('cap-video').value.trim() || null;
-    } else {
+    } else if (currentType === 'link') {
       const url = document.getElementById('link-url').value.trim();
       if (!url||!url.startsWith('http')) { showToast('Ingresa un enlace válido 🔗','red'); btn.disabled=false; btn.innerHTML=postBtnHTML(); return; }
       data.link_url = url; data.caption = document.getElementById('cap-link').value.trim() || null;
       try { data.link_host = new URL(url).hostname.replace('www.',''); } catch(e) { data.link_host = url; }
+    } else if (currentType === 'audio') {
+      if (!selectedAudio) { showToast('Selecciona un audio 🎵','red'); btn.disabled=false; btn.innerHTML=postBtnHTML(); return; }
+      showToast('Subiendo audio…');
+      const { url, name } = await sb.uploadAudio(selectedAudio);
+      data.audio_url = url; data.audio_name = name;
+      data.caption = document.getElementById('cap-audio').value.trim() || null;
     }
     const inserted = await sb.insertPost(data);
     posts.unshift(inserted[0]);
@@ -1049,7 +1167,12 @@ function resetComposer() {
   const prev=document.getElementById('img-preview'); if(prev){ prev.classList.remove('on'); prev.src=''; }
   const dz=document.getElementById('dropzone'); if(dz) dz.style.display='';
   const fi=document.getElementById('file-input'); if(fi) fi.value='';
-  selectedFile = null; setType('foto');
+  selectedFile = null; selectedAudio = null;
+  if (previewAudioEl) { previewAudioEl.pause(); previewAudioEl = null; }
+  const adz = document.getElementById('audio-dropzone'); if(adz) adz.style.display='';
+  const apw = document.getElementById('audio-preview-wrap'); if(apw) apw.style.display='none';
+  const ai = document.getElementById('audio-input'); if(ai) ai.value='';
+  setType('foto');
 }
 
 async function deletePost(id) {
@@ -1190,6 +1313,60 @@ function updateRepliesUI(postId) {
   }).join('');
 }
 
+// ── AUDIO PLAYER MANAGER ──
+const audioPlayers = {};
+function toggleAudio(postId, url) {
+  // Pause any other playing audio
+  Object.entries(audioPlayers).forEach(([id, a]) => {
+    if (id !== postId && !a.paused) {
+      a.pause();
+      const icon = document.getElementById('play-icon-'+id);
+      const btn = document.getElementById('play-'+id);
+      if (icon) icon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+      if (btn) btn.classList.remove('playing');
+    }
+  });
+  // Get or create audio element
+  if (!audioPlayers[postId]) {
+    audioPlayers[postId] = new Audio(url);
+    audioPlayers[postId].ontimeupdate = () => {
+      const a = audioPlayers[postId];
+      const pct = (a.currentTime / a.duration) * 100 || 0;
+      const prog = document.getElementById('prog-'+postId);
+      const cur = document.getElementById('cur-'+postId);
+      if (prog) prog.style.width = pct + '%';
+      if (cur) cur.textContent = fmtTime(a.currentTime);
+    };
+    audioPlayers[postId].onloadedmetadata = () => {
+      const dur = document.getElementById('dur-'+postId);
+      if (dur) dur.textContent = fmtTime(audioPlayers[postId].duration);
+    };
+    audioPlayers[postId].onended = () => {
+      const icon = document.getElementById('play-icon-'+postId);
+      const btn = document.getElementById('play-'+postId);
+      if (icon) icon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+      if (btn) btn.classList.remove('playing');
+    };
+  }
+  const a = audioPlayers[postId];
+  const icon = document.getElementById('play-icon-'+postId);
+  const btn = document.getElementById('play-'+postId);
+  if (a.paused) {
+    a.play();
+    if (icon) icon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+    if (btn) btn.classList.add('playing');
+  } else {
+    a.pause();
+    if (icon) icon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+    if (btn) btn.classList.remove('playing');
+  }
+}
+function seekAudio(postId, e) {
+  const a = audioPlayers[postId]; if (!a) return;
+  const bar = e.currentTarget; const rect = bar.getBoundingClientRect();
+  a.currentTime = ((e.clientX - rect.left) / rect.width) * a.duration;
+}
+
 // ── RENDER ──
 function renderFeed() {
   const feed = document.getElementById('muro-feed'); if (!feed) return;
@@ -1206,8 +1383,8 @@ function renderFeed() {
 
 function renderPost(p) {
   const initials = p.author.charAt(0).toUpperCase();
-  const badgeCls = {foto:'badge-foto',video:'badge-video',link:'badge-link'}[p.type] || 'badge-link';
-  const badgeTxt = {foto:'Foto',video:'Video',link:'Enlace'}[p.type] || 'Post';
+  const badgeCls = {foto:'badge-foto',video:'badge-video',link:'badge-link',audio:'badge-audio'}[p.type] || 'badge-link';
+  const badgeTxt = {foto:'Foto',video:'Video',link:'Enlace',audio:'Audio'}[p.type] || 'Post';
   const ts = p.created_at ? new Date(p.created_at).toLocaleString('es-CO',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}) : '';
   const replies = repliesForPost(p.id);
 
@@ -1219,6 +1396,20 @@ function renderPost(p) {
     <div class="post-link-info"><div class="post-link-host">${p.link_host||'Enlace'}</div><div class="post-link-url">${p.link_url}</div></div>
     <div class="post-link-arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
   </a>`;
+  else if (p.type==='audio'&&p.audio_url) media = `<div class="post-audio">
+    <div class="audio-player">
+      <button class="audio-play-btn" id="play-${p.id}" onclick="toggleAudio('${p.id}','${p.audio_url}')">
+        <svg id="play-icon-${p.id}" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </button>
+      <div class="audio-info">
+        <div class="audio-name">${p.audio_name||'Audio'}</div>
+        <div class="audio-progress" onclick="seekAudio('${p.id}',event)">
+          <div class="audio-progress-fill" id="prog-${p.id}" style="width:0%"></div>
+        </div>
+        <div class="audio-times"><span id="cur-${p.id}">0:00</span><span id="dur-${p.id}">0:00</span></div>
+      </div>
+    </div>
+  </div>`;
 
   return `<div class="post-card" id="post-${p.id}">
     <div class="post-head">
@@ -1326,7 +1517,7 @@ function doSearch(query) {
   // ── Search POSTS (muro) ──
   if (searchFilter !== 'actas') {
     posts.forEach(p => {
-      const text = [p.author, p.caption||'', p.link_url||'', p.link_host||''].join(' ').toLowerCase();
+      const text = [p.author, p.caption||'', p.link_url||'', p.link_host||'', p.audio_name||''].join(' ').toLowerCase();
       if (!q || text.includes(q)) {
         const excerpt = p.caption || (p.link_url ? p.link_url : (p.type==='video' ? 'Video de YouTube' : 'Foto'));
         searchResults.push({ type:'post', id:p.id, title: 'Post de ' + p.author, excerpt, meta: p.type.charAt(0).toUpperCase()+p.type.slice(1) + ' · ' + new Date(p.created_at).toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'numeric'}) });
