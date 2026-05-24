@@ -649,7 +649,7 @@ footer{background:var(--blue-900);border-top:1px solid rgba(255,255,255,.06);pad
     <p>Ingresa la contraseña para ver el Punto 5 — información financiera reservada.</p>
     <input class="pin-in" type="password" id="pin-in" maxlength="30" placeholder="••••••" onkeydown="if(event.key==='Enter')chkPin()">
     <div class="pin-err" id="pin-err"></div>
-    <button class="pin-go" onclick="chkPin()">Acceder</button><br>
+    <button class="pin-go" id="pin-go" onclick="chkPin()">Acceder</button><br>
     <button class="pin-cancel" onclick="closePin()">Cancelar</button>
   </div>
 </div>
@@ -783,7 +783,30 @@ function sCu(a){const ch=a.cumple.map(c=>`<div class="cumple-chip"><div class="c
 function sPx(a){return sec(9,'Fecha de la Próxima Reunión',`<div class="proxima"><div class="prox-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div><div><div class="prox-lbl">Próxima asamblea</div><div class="prox-fecha">${a.prox}</div></div></div>`);}
 
 function reqTeso(target){if(unlocked){showTeso(target);return;}pinTarget=target;document.getElementById('pin-in').value='';document.getElementById('pin-err').textContent='';document.getElementById('pin-ov').classList.add('on');setTimeout(()=>document.getElementById('pin-in').focus(),100);}
-async function chkPin(){const v=document.getElementById('pin-in').value;const go=document.getElementById('pin-go');go.disabled=true;go.textContent='Verificando…';try{const pwd=await sb.getPassword();if(pwd&&v===pwd){unlocked=true;closePin();showTeso(pinTarget);}else{document.getElementById('pin-err').textContent='Contraseña incorrecta. Intenta de nuevo.';document.getElementById('pin-in').value='';document.getElementById('pin-in').focus();}}catch(e){document.getElementById('pin-err').textContent='Error de conexión. Intenta de nuevo.';}go.disabled=false;go.textContent='Acceder';}
+async function chkPin(){
+  const v = document.getElementById('pin-in').value;
+  const go = document.getElementById('pin-go');
+  const errEl = document.getElementById('pin-err');
+  if (!v.trim()) return;
+  if (go) { go.disabled=true; go.textContent='Verificando…'; }
+  if (errEl) errEl.textContent = '';
+  try {
+    const pwd = await sb.getPassword();
+    if (pwd && v === pwd) {
+      unlocked = true;
+      closePin();
+      showTeso(pinTarget);
+    } else {
+      if (errEl) errEl.textContent = 'Contraseña incorrecta. Intenta de nuevo.';
+      const inp = document.getElementById('pin-in');
+      if (inp) { inp.value=''; inp.focus(); }
+    }
+  } catch(e) {
+    console.error('chkPin error:', e);
+    if (errEl) errEl.textContent = 'Error de conexión. Intenta de nuevo.';
+  }
+  if (go) { go.disabled=false; go.textContent='Acceder'; }
+}
 function closePin(){document.getElementById('pin-ov').classList.remove('on');}
 function showTeso(t){if(t==='hero'){document.getElementById('hc-lock-wrap').style.display='none';document.getElementById('hc-data').style.display='block';return;}const b=document.getElementById('tl-btn'),d=document.getElementById('tl-data');if(b)b.style.display='none';if(d)d.classList.add('vis');}
 function lockTeso(){unlocked=false;const b=document.getElementById('tl-btn'),d=document.getElementById('tl-data');if(b)b.style.display='flex';if(d)d.classList.remove('vis');}
