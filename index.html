@@ -1599,7 +1599,7 @@ ESTATUTOS COMPLETOS:
 ${DOC_ESTATUTOS}
 
 RECOPILACIÓN HISTÓRICA DE ACTAS (extracto):
-${DOC_ACTAS.substring(0, 30000)}
+${DOC_ACTAS.substring(0, 12000)}
 
 INSTRUCCIONES:
 - Responde siempre en español, de forma clara y amigable
@@ -1642,14 +1642,18 @@ async function askIA(question) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 800,
         system: IA_SYSTEM,
         messages: iaHistory
       })
     });
 
     const data = await response.json();
+    if (!response.ok) {
+      console.error('API Error:', data);
+      throw new Error('API ' + response.status + ': ' + JSON.stringify(data));
+    }
     const reply = data.content?.[0]?.text || 'Lo siento, no pude procesar tu pregunta. Intenta de nuevo.';
 
     // Remove typing
@@ -1664,7 +1668,8 @@ async function askIA(question) {
 
   } catch(e) {
     document.getElementById(typingId)?.remove();
-    addIAMsg('assistant', 'Hubo un error de conexión. Por favor intenta de nuevo.');
+    console.error('IA Error:', e);
+    addIAMsg('assistant', 'Error: ' + e.message);
   }
 
   btn.disabled = false;
