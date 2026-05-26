@@ -1023,7 +1023,8 @@ async function chkPin(){
     if (pwd && v === pwd) {
       unlocked = true;
       closePin();
-      showTeso(pinTarget);
+      if (pinTarget === '__dir__') { showDirContent(); }
+      else { showTeso(pinTarget); }
     } else {
       if (errEl) errEl.textContent = 'Contraseña incorrecta. Intenta de nuevo.';
       const inp = document.getElementById('pin-in');
@@ -1659,7 +1660,12 @@ let dirFilter = 'todos';
 
 function unlockAndShowDir() {
   if (unlocked) { showDirContent(); return; }
-  openPinModal(showDirContent);
+  // Reutiliza el modal PIN existente con callback personalizado
+  pinTarget = '__dir__';
+  document.getElementById('pin-in').value = '';
+  document.getElementById('pin-err').textContent = '';
+  document.getElementById('pin-ov').classList.add('on');
+  setTimeout(() => document.getElementById('pin-in').focus(), 100);
 }
 
 function showDirContent() {
