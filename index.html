@@ -2236,9 +2236,21 @@ function showV(v) {
 
 
 init();
-</script>
-</body>
-</html>/* ── MURO FILTER ── */
+/* ── NAV ── */
+function showV(v) {
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  document.getElementById('v-'+v).classList.add('on');
+  ['inicio','actas','muro','nosotros','docs','directorio'].forEach((n,i)=>{ if(n===v) document.querySelectorAll('.nb')[i].classList.add('on'); });
+  if(v==='actas'){ document.getElementById('l-actas').style.display='block'; document.getElementById('l-det').style.display='none'; }
+  if(v==='muro') loadMuro();
+  if(v==='directorio') loadDirectorio();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+
+init();
+/* ── MURO FILTER ── */
 let muroFilter = 'todo';
 function setMuroFilter(f) {
   muroFilter = f;
