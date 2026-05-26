@@ -2343,7 +2343,6 @@ function updateMuroStats() {
 }
 
 /* ── AUDIO PLAYER MANAGER ── */
-const audioPlayers = {};
 function toggleAudio(postId, url) {
   Object.entries(audioPlayers).forEach(([id, a]) => {
     if (id !== postId && !a.paused) {
@@ -2503,7 +2502,6 @@ INSTRUCCIONES:
 - Usa el contexto de ser una familia colombiana unida
 - Nunca inventes datos financieros específicos que no estén en los documentos`;
 
-let iaHistory = [];
 
 async function sendIA() {
   const input = document.getElementById('ia-input');
